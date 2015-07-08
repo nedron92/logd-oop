@@ -1,0 +1,25 @@
+# Turn on URL rewriting
+RewriteEngine On
+
+# Installation directory, relative to your BASE-URL
+# RewriteBase /php55/logd/
+
+#Deny to show list of directories with no index.php or something else
+Options -Indexes
+
+# Protect hidden files from being viewed (include .htaccess and .dbconfig)
+<Files .*>
+	Order Deny,Allow
+	Deny From All
+</Files>
+
+# Redirect the game|game_core|modules directories (and eventually a
+# dev directory) to index.php with GET
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^((?:game|game_core|modules|dev)\b.*)$ index.php [L]
+
+# rewrite all requests which don't point to a file
+# or an directory to index.php with GET-Method
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]

@@ -1,0 +1,356 @@
+/* CSS Document */
+td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+a{
+	color: #6600FF;
+	text-decoration: none;
+}
+a:hover {
+	color: #66FF99;
+	text-decoration: none;
+}
+a.nav {
+	text-decoration: none;
+	width: 179px;
+	height: auto;
+	padding: 1px;
+	float: left;
+	clear: none;
+	
+}
+a:hover.nav {
+	color: #669933;
+	
+}
+a.navhilite {
+	text-decoration: none;
+	width: 150px;
+	height: auto;
+	padding: 1px;
+	float: right;
+	clear: none;
+	color:#669933;
+	
+}
+a:hover.navhilite {
+	color:#669933;
+	text-decoration: none;
+	
+	
+}
+.navhelp {
+	text-decoration: none;
+	width: 179px;
+	height: auto;
+	padding: 1px;
+	float: left;
+	clear: none;
+	cursor: default;
+}
+.navhead {
+	text-decoration: none;
+	width: 178px;
+	height: auto;
+	padding: 1px;
+	line-height: 18px;
+	float: left;
+	clear: none;
+	font-weight: bold;
+	color:#00FF00;
+	cursor: default;
+	text-align: center;
+}
+table {
+}
+td.charinfo {
+	border-top-width: 1px;
+	border-top-style: solid;
+	border-top-color: #CC0033;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	cursor: default;
+}
+td.charhead {
+	background-color: #FF0000;
+	border: none;
+	cursor: default;
+	color: #FFFF00;
+}
+table.charinfo {
+	border: none;
+	width: 179px;
+}
+td.popupheader {
+	background-color: #000000;
+	background-image: url('../../../LotGD/LotGD%20010705/images/headbkg.GIF');
+	height: 20px
+}
+td.noborder {
+	border: none;
+}
+table.noborder {
+	border: none;
+}
+td.village {
+	background-image: url('../images/village.jpg');
+	background-repeat: no-repeat;
+	background-position: right bottom
+}
+td.forest {
+	background-image: url('../images/forest.jpg');
+	background-repeat: no-repeat;
+	background-position: center bottom
+}
+td.dragon {
+	background-image: url('../images/dragon.jpg');
+	background-repeat: no-repeat;
+	background-position:  center;
+	background-attachment: fixed
+}
+input {
+	background-color: #433828;
+	border: 1px solid #806B4D;
+	color:#66FF99;
+}
+.button {
+font-family: verdana,arial,helvetica,sans-serif;  
+     font-size: 12px;  
+     color:#66FF99;
+     background-color: #422B00;  
+     border-top: 1px solid #947356;  
+     border-left: 1px solid #947356;  
+     border-right: 1px solid #403225;  
+     border-bottom: 1px solid #403225;
+}
+.input {
+	background-color: #433828;
+	border: 1px solid #806B4D;
+	color: #669999;
+}
+select {
+	
+	color: #669999;
+}
+table.vitalinfo {
+	background-color: #003300;
+	border: 1px solid #000000;
+	width: 182px;
+}
+table.nav {
+	
+	width: 182px;
+}
+a.motd {
+	text-decoration: none;
+	text-align: center;
+	color:#FF9900;
+	width: 181px;
+	height: 16px;
+	padding: 1px;
+	float: left;
+	clear: none;
+    background-color: #000000;
+	border-top: thin solid #000000;
+	border-bottom: thin solid #000000;
+	border-right: thin solid #000000;
+	border-left: thin solid #000000;
+}
+a:hover.motd {
+	height: 14px;
+	width: 179px;
+	text-decoration: none;
+	color:#FF9900;
+	background-color: #806B4D;
+	border-top: thin solid #FF9900;
+	border-bottom: thin solid #FF9900;
+	border-right: thin solid #FF9900;
+	border-left: thin solid #FF9900;
+}
+a.hotmotd {
+	text-decoration: none;
+	text-align: center;
+	color:#FF9900;
+	width: 181px;
+	height: auto;
+	padding: 1px;
+	float: left;
+	clear: none;
+
+	background-color: #806B4D;
+	border-top: thin solid #FF9900;
+	border-bottom: thin solid #FF9900;
+	border-right: thin solid #FF9900;
+	border-left: thin solid #FF9900;
+}
+.pagetitle {
+	font-family: "Old English Text MT", "Times New Roman";
+	font-size: 20px;
+	color: #669933;
+}
+
+.navhi {
+	color: #669933;
+	text-decoration: underline;
+}
+.colDkBlue    { color: #0000B0; }
+.colDkGreen   { color: #00B000; }
+.colDkCyan    { color: #00B0B0; }
+.colDkRed     { color: #B00000; }
+.colDkMagenta { color: #B000CC; }
+.colDkYellow  { color: #B0B000; }
+.colDkWhite   { color: #B0B0B0; }
+.colLtBlue    { color: #0000FF; }
+.colLtGreen   { color: #00FF00; }
+.colLtCyan    { color: #00FFFF; }
+.colLtRed     { color: #FF0000; }
+.colLtMagenta { color: #FF00FF; }
+.colLtYellow  { color: #FFFF00; }
+.colLtWhite   { color: #FFFFFF; }
+.colLtBlack   { color: #999999; }
+.colOrange  { color: #FF9900; }
+.colDkOrange  { color: #FF6600; }
+.colBlue  { color: #0070FF; }
+.colLime  { color: #DDFFBB; }
+.colBlack  { color: #000000; }
+.colRose { color: #EEBBEE; }
+.colblueviolet { color: #9A5BEE; }
+.coliceviolet{ color: #AABBEE; }
+.colLtBrown { color: #F8DB83; }
+.colDkBrown { color: #6b563f; }
+.colXLtGreen{color: #aaff99; }
+.colAttention { background-color: #00FF00; color: #FF0000;}
+.colWhiteBlack { background-color: #FFFFFF; color: #000000; }
+.colBack  { background-color:#00FFFF; color:#000000; }
+.trhead  { background-color:#990000; color:#FFFFFF; }
+.trlight { background-color:#330000; }
+.trdark  { background-color:#000000; }
+.gutefee {
+	border: 2px outset Maroon;
+	background : #FFD700;
+	width: 400px;
+	z-index: 101;
+   cursor: help;
+}
+
+.gutefeeueberschrift{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color : #800000;
+	font-weight: bolder;
+}
+.gutefeetext{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color : #800000;
+}
+.gutefeesubtext{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: italic;
+	color : Black;
+}
+
+.guterteufel {
+	border: 2px outset Maroon;
+	background : #FF4500;
+	width: 400px;
+	z-index: 101;
+   cursor: help;
+}
+
+.guterteufelueberschrift{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color : #424242;
+	font-weight: bolder;
+}
+.guterteufeltext{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color : #424242;
+}
+.guterteufelsubtext{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-style: italic;
+	color : Black;
+}
+
+div.land {
+	position:absolute;
+	padding: 2px;
+	border: 2px ridge silver;
+	height: 15px;
+	width: 15px;
+	font-size: 10px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align:center;
+    cursor:default;
+    color: #000000;
+    z-index : 2;
+}
+
+div.kartencontainer {
+	position: relative;
+	top: 0pt;
+	left: 0pt;
+	width: 780px;
+	height: 477px;
+}
+
+div.karte {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+
+div.karteninfocontainer {
+	position: absolute;
+	top: 10px;
+	left: 700px;
+	z-index: 2;
+}
+
+div.karteninfo {
+	position: absolute;
+	top: 15px;
+	left: 708px;
+	z-index: 3;
+	height: 23px;
+	width: 25px;
+	cursor: help;
+}
+
+div.kartenhilfe {
+	position: absolute;
+	top: 15px;
+	left: 740px;
+	z-index: 3;
+	height: 23px;
+	width: 25px;
+	cursor: help;
+}
+
+div.kartenkorrektur {
+	width: 780px;
+	margin-left:200px;
+}
+
+div.link{
+	position:absolute;
+	padding: 2px;
+	border: 3px ridge Red;
+	height: 15px;
+	width: 15px;
+	font-size: 10px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align:center;
+	cursor:hand;
+   color: #000000;
+   z-index : 2;
+}
