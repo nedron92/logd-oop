@@ -1,0 +1,242 @@
+/**
+ * @file    yar2.css
+ * @author  Daniel Becker  <becker_leinad@hotmail.com>
+ * @date    05.03.2015
+ * @package templates
+ * @subpackage  yar2
+ *
+ * @description
+ * The stylesheet for this template (yar2)
+ */
+
+
+
+/*
+--------------------------------
+    B O D Y     S T Y L E
+--------------------------------
+*/
+body{
+    background-color: #000000;
+    color: #cccccc;
+    margin: 5px;
+}
+
+a{
+    color: #0099FF;
+    text-decoration: none;
+}
+a:hover {
+    color: #00FFFF;
+    text-decoration: none;
+}
+
+input {
+    background-color: #433828;
+    border: 1px solid #806B4D;
+    color: #CCCCCC;
+}
+
+select {
+    background-color: #433828;
+    border: 1px solid #806B4D;
+    color: #CCCCCC;
+}
+
+/*
+--------------------------------
+    H E A D E R     S T Y L E
+--------------------------------
+*/
+.header{
+    background: url(images/header.png) repeat;
+    height: 70px;
+    margin-bottom: 5px;
+}
+
+.header .title-text h1
+{  }
+
+.header .title-image img
+{ margin-top: 5px; }
+
+
+
+/*
+--------------------------------
+    G A M E     S T Y L E
+--------------------------------
+*/
+.game
+{  }
+
+/*
+-----------------------------------------------------
+    G A M E  -  N A V I G A T I O N     S T Y L E
+-----------------------------------------------------
+*/
+.game .navigation
+{  background-color: #433828;  }
+
+.game .navigation .navigation-menu,
+.game .content .content-online
+{
+    margin: 7px auto;
+    max-width: 200px;
+}
+
+.game .navigation .navigation-menu .nav-top,
+.game .content .content-online .online-top
+{ margin-bottom: 2px; }
+
+.game .navigation .navigation-menu .nav-bottom,
+.game .content .content-online .online-bottom
+{ margin-top: 2px; }
+
+.game .navigation .navigation-menu img,
+.game .content .content-online img{
+    width: 100%;
+}
+
+.game .navigation .navigation-menu .nav-content,
+.game .content .content-online .online-content
+{
+    background-color: #003366;
+    -webkit-box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.83);
+    -moz-box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.83);
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.83);
+}
+
+.game .navigation .navigation-menu .nav-content a
+{
+    width: 100%;
+    height: auto;
+    padding: 1px;
+    border: thin solid #003366;
+    display: block;
+}
+
+.game .navigation .navigation-menu .nav-content a:hover
+{
+    background-color: #0055b0;
+    color: #00EEFF;
+    border: thin outset #003366;
+}
+
+.game .navigation .navigation-menu .nav-content .nav-head
+{
+    border: thin #003366;
+    height: auto;
+    padding: 1px;
+    line-height: 18px;
+    font-weight: bold;
+    color: #00CCFF;
+    text-align: center;
+}
+
+.game .navigation .navigation-menu .nav-content > p,
+.game .content .content-online .online-content > p
+{
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-bottom: 0;
+}
+
+.game .navigation .more
+{
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.game .navigation .more p{
+    padding: 0;
+    margin-bottom: 1px;
+}
+
+.game .navigation .more p{
+    padding: 0;
+    margin-bottom: 1px;
+}
+
+.game .navigation .more p.motd{
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.game .navigation .more p:hover{
+    background-color: #806B4D;
+    border: thin solid #FF9900;
+}
+
+.game .navigation .more a
+{
+    display: block;
+    width: 100%;
+    color: #ff9900;
+}
+
+.game .navigation .character{
+    margin: 20px auto;
+    background-color: #003300;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.game .navigation .character .stats-table
+{ margin: 5px 1px }
+
+.game .navigation .character .stats-table p
+{ margin-bottom: 0 }
+
+.game .navigation .character .stats-table .stats-head{
+    background-color: #009900;
+    color: #ffff00;
+    text-align: center;
+}
+
+.game .navigation .character .stats-table .stats-content{
+    border-top: 1px solid #009900;
+    text-align: left;
+}
+
+
+/*
+-----------------------------------------------
+    G A M E  -  C O N T E N T     S T Y L E
+-----------------------------------------------
+*/
+.game .content
+{ background-color: #352D20; }
+
+.game .content .content-box
+{  margin: 20px 5px; }
+
+.game .content .content-box p
+{  text-align: center; }
+
+
+.game .content .content-online .online-content
+{ background-color: #003300; }
+
+/*
+--------------------------------
+    F O O T E R     S T Y L E
+--------------------------------
+*/
+.footer{
+    background: url(images/footer.png) repeat;
+    height: 60px;
+    margin-top: 5px;
+}
+
+/*
+-------------------------------------
+    C O P Y R I G H T     S T Y L E
+-------------------------------------
+*/
+.copyright-source
+{  }
+
+.copyright-source .source{
+    text-align: right;
+}

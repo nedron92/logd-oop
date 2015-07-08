@@ -1,0 +1,20 @@
+# Turn on URL rewriting
+RewriteEngine On
+
+# Installation directory, maybe not needed here anymore
+# RewriteBase /logd-oop/
+
+#Deny to show list of directories with no index.php or something else
+Options -Indexes
+
+# Protect hidden files from being viewed
+<Files .*>
+	Order Deny,Allow
+	Deny From All
+</Files>
+
+# rewrite all requests which don't point to a file
+# or an directory to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?viewfile=$1
