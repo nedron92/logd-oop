@@ -147,7 +147,7 @@ class LOGD_Template {
 					}
 					//All ok! Load the template and buffer the output
 					$a_global_template_variables = array(
-						'template_directory' => MEDIA_URL.$this->s_template_dir.DIRECTORY_SEPARATOR.$s_template_name.DIRECTORY_SEPARATOR,
+						'template_directory' => MEDIA_URL.$this->s_template_dir.'/'.$s_template_name.'/',
 					);
 
 					extract($a_global_template_variables, EXTR_SKIP);

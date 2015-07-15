@@ -100,7 +100,7 @@ if(PHP_OS === 'Linux')
 }
 
 define('BASE_URL', $s_document_root);
-define('MEDIA_URL', BASE_URL.'/'.basename(MEDIA_PATH).'/');
+define('MEDIA_URL', BASE_URL.basename(MEDIA_PATH).'/');
 
 // Bootstrap the game
 require GAME_PATH.'bootstrap'.EXT;

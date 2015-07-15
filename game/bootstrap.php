@@ -12,7 +12,9 @@
 // ---------------SET UP ----------------
 
 //define a static array with needed path values
-static $a_include_paths = array(
+
+static $a_include_paths = array();
+ $a_include_paths = array(
 	'module_path' => MOD_PATH.PATH_SEPARATOR,
 	'core_path' => CORE_PATH.'classes'.DIRECTORY_SEPARATOR.PATH_SEPARATOR,
 	'game_path' => GAME_PATH.'classes'.DIRECTORY_SEPARATOR.PATH_SEPARATOR,
