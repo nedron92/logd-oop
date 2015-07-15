@@ -11,7 +11,7 @@
 
 // ---------------SET UP ----------------
 
-//define a static array with needed values
+//define a static array with needed path values
 static $a_include_paths = array(
 	'module_path' => MOD_PATH.PATH_SEPARATOR,
 	'core_path' => CORE_PATH.'classes'.DIRECTORY_SEPARATOR.PATH_SEPARATOR,
@@ -22,25 +22,26 @@ foreach($a_include_paths as $value)
 { set_include_path($value.get_include_path()); }
 
 
-/**
+/*
  * Set the default time zone.
- * @link http://www.php.net/manual/timezones
+ * @todo set it later via database
  */
 date_default_timezone_set('Europe/Berlin');
 
-/**
+/*
  * Set the default locale.
- * @link http://www.php.net/manual/function.setlocale
+ * @todo set it later via database
  */
 setlocale(LC_ALL, 'en_EN.utf-8');
 
-/**
+/*
  * Enable the auto-loader.
- * @link http://www.php.net/manual/function.spl-autoload-register
+ * it will be accept namespace-based classes and also classes
+ * with underscores. It will replace the underscores as path to the class.
  */
 
 spl_autoload_register(function($class) {
-	spl_autoload(str_replace('_', '/', $class));
+	spl_autoload(str_replace('_', DIRECTORY_SEPARATOR, $class));
 });
 
 //Initialize the random number generator
@@ -52,13 +53,14 @@ mt_srand(LOGD::make_seed());
 
 
 //Load the default template instance
-Template::get_instance(null,false);
+// @todo maybe set it later via database
+//Template::get_instance(null,false);
 
 //Set the page_header and page_footer every time
+// @todo set it later via database
 Replacer::page_header('LOGD - OOP');
-Replacer::page_footer();
 
-/**
+/*
  * Try to load all configured modules
  */
 /*try{
@@ -88,4 +90,5 @@ if($result->success())
 */
 
 //Render the first view
-View::render_statically('start');
+View::create('start')->render();
+

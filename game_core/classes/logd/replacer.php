@@ -25,7 +25,7 @@ class LOGD_Replacer {
 			$output = '<p class="nav-head">&#151;  '.$title.'  &#151;</p>';
 			Template::get_instance()->set_output('navigation',$output);
 		}
-		else Template::get_instance()->set_output('navigation','<a href="'.$link.'">'.$title.'</a>');
+		else Template::get_instance()->set_output('navigation','<a href="'.$link.'?'.LOGD_Core::create_random_uri_string().'">'.$title.'</a>');
 	}
 
 	/**
@@ -86,10 +86,18 @@ class LOGD_Replacer {
 	 */
 	public static function set_links($a_links=array())
 	{
+		if($a_links === array())
+		{ $a_links = Config::get_default_html('section_more'); }
+
 		foreach($a_links as $key => $value)
 		{
-			Template::get_instance()->set_output($key,'TRANSLATE');
-			Template::get_instance()->set_output($key.'_link',$value);
+			$key_value = $key;
+			if(is_null($value))
+			{ $key_value = null; }
+
+			//@todo do translation later
+			Template::get_instance()->set_output($key,$key_value);
+			Template::get_instance()->set_output($key.'-link',$value.'?'.LOGD_Core::create_random_uri_string());
 		}
 	}
 }

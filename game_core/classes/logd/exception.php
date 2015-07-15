@@ -12,7 +12,11 @@
 
 class LOGD_Exception extends Exception{
 
+	/**
+	 * @var mixed (int|string)  the exception code
+	 */
 	private $m_code;
+
 	/**
 	 * Creates a new exception.
 	 *
@@ -37,8 +41,8 @@ class LOGD_Exception extends Exception{
 		define('ERROR_MESSAGE',$this->message);
 		define('ERROR_CODE',$this->m_code);
 
-		if(strpos(ERROR_CODE,'TEMPLATE') !== false) View::render('error',false);
-		else View::render('error');
+		if(strpos(ERROR_CODE,'TEMPLATE') !== false) View::create('error')->render(false);
+		else View::create('error')->render();
 
 		exit(1);
 	}

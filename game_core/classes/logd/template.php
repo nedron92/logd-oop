@@ -18,6 +18,9 @@ class LOGD_Template {
 	 */
 	private  $s_start_template = 'yar2';
 
+	/**
+	 * @var string  contain the directory in which the templates are located
+	 */
 	private $s_template_dir = 'templates';
 
 	/**

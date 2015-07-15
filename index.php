@@ -5,14 +5,9 @@
  * @date    23.02.2015
  *
  * @description
- * additional index file
+ * additional index file for redirecting to the public/index.php file
  */
 
-/* todo: Maybe activate or delete complete and let this file empty */
+//redirect to the public directory if we needed it.
 Header('Location: public/',301);
 exit (1);
-
-
-
-
-

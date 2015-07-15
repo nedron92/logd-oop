@@ -13,6 +13,9 @@
 
 class LOGD_Cache {
 
+	/**
+	 * @const string    a prefix for the cache-keys
+	 */
 	const CACHE_PREFIX = 'logd_';
 
 	/**

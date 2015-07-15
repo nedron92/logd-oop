@@ -18,6 +18,9 @@ class LOGD_View {
 	 */
 	protected static $s_views = 'views';
 
+	/**
+	 * @var null|string the name of the view-file
+	 */
 	protected $s_filename = null;
 
 	/**
@@ -42,6 +45,15 @@ class LOGD_View {
 	}
 
 	/**
+	 * this method will do code before the view will be rendered
+	 */
+	public function before()
+	{
+		Replacer::set_links();
+		Replacer::page_footer();
+	}
+
+	/**
 	 * This static method creates a new View -> Object and return it.
 	 *
 	 * @param null|string $s_file the filename of the view
@@ -53,25 +65,16 @@ class LOGD_View {
 	}
 
 	/**
-	 * this method will render the current required view,
-	 * without any local variables within the view
+	 * Method for rendering the view and output it to the browser.
 	 *
-	 * @param string $file           the view-file to search for
-	 * @param bool   $with_template  render view with the template output. DEFAULT: TRUE
+	 * @param bool|true $with_template  If true, the method will render also the full template, if not the output
+	 *                                  will be without template.
+	 *                                  Default: true
 	 */
-	public static function render_statically($file='start', $with_template=true)
-	{
-		$path = LOGD::find_file(self::$s_views,$file);
-
-		// Load the view
-		include $path;
-
-		//Render the current template
-		if($with_template) Template::get_instance()->render();
-	}
-
 	public function render($with_template = true)
 	{
+		$this->before();
+
 		$path = LOGD::find_file(self::$s_views,$this->s_filename);
 
 		//import all local variables to the view
@@ -82,14 +85,33 @@ class LOGD_View {
 
 		//Render the current template
 		if($with_template) Template::get_instance()->render();
+
+
 	}
 
+	/**
+	 * It can be bind a variable to the view by a given value (other variable, because of reference).
+	 * In the view the variable with the name of 'key' will be able to us as "$key" variable.
+	 *
+	 * @param string    $key    the name of the new/binded variable
+	 * @param mixed     $value  the value of the variable (must be a other variable)
+	 * @return View     return the object itself
+	 */
 	public function bind_by_value($key, & $value)
 	{
 		$this->a_variables[$key] =& $value;
 
 		return $this;
 	}
+
+	/**
+	 * It can be bind a variable to the view by a given value (string here)
+	 * In the view the variable with the name of 'key' will be able to us as "$key" variable.
+	 *
+	 * @param string    $key    the name of the new/binded variable
+	 * @param string    $value  the value of the variable (must be a string here)
+	 * @return View     return the object itself
+	 */
 	public function bind_by_name($key, $value)
 
 	{
@@ -97,4 +119,5 @@ class LOGD_View {
 
 		return $this;
 	}
+
 } 

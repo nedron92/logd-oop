@@ -21,13 +21,18 @@ class LOGD_Config
 	public static function get_config()
 	{
 		return array(
+			'html' => array (
 
-			//Enable or disable the modules
-			//Don't disable the Game and the Database modules ;)
+				//the default standard for the 'more' section in a template
+				'section_more' => array (
+					'motd' => BASE_URL.'motd',
+					'mail' => BASE_URL.'mail',
+					'petition' => BASE_URL.'petition',
+					'forum' => null,
+					'chat' => null,
+				),
 
-			'modules' => array(
-				//'Database' => MOD_PATH.'database',
-			)
+			),
 		);
 	}
 
@@ -39,5 +44,22 @@ class LOGD_Config
 	public static function get_configured_modules()
 	{
 		return self::get_config()['modules'];
+	}
+
+	/**
+	 * Return the default html array or only a specified section
+	 * (useful as a fallback method)
+	 *
+	 * @param null|string $s_section    a specified section from the html array
+	 * @return mixed (array|string)
+	 */
+	public static function get_default_html($s_section = null)
+	{
+		if(is_null($s_section)) {
+			return self::get_config()['html'];
+		}
+		else{
+			return self::get_config()['html'][$s_section];
+		}
 	}
 }
