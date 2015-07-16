@@ -252,7 +252,8 @@ class LOGD_Template {
 	 * @param null|string   $value      the new output at the tag-place (concat each other)
 	 * @param bool          $stats      is the tag name a statsbar one?
 	 */
-	public function set_output($itemname, $value=null, $stats=false){
+	public function set_output($itemname, $value=null, $stats=false)
+	{
 
 		if(!$stats)
 		{
@@ -272,7 +273,8 @@ class LOGD_Template {
 	 * from set_output before.
 	 *
 	 */
-	public function template_replace(){
+	public function template_replace()
+	{
 		$a_replace = $this->a_output;
 		if(is_null($a_replace)) $a_replace = array();
 
@@ -283,8 +285,9 @@ class LOGD_Template {
 	/**
 	 * Loading the defined standard css and js scripts
 	 */
-	private function load_standard_css_js() {
-
+	private function load_standard_css_js()
+	{
+		var_dump(MEDIA_URL);
 		//setting the array with all needed css/js scripts as standard
 		$a_standard_scripts = array(
 			'jQuery' => MEDIA_URL.'js/libs/jquery-2.1.3.js',
@@ -292,7 +295,7 @@ class LOGD_Template {
 			'bootstrap-js' => MEDIA_URL.'js/plugin/bootstrap/bootstrap.js',
 
 			'bootstrap' => MEDIA_URL.'css/bootstrap/bootstrap.css',
-			$this->s_current_template_name => MEDIA_URL.'templates/'.$this->s_current_template_name.'/'.$this->s_current_template_name.'.css',
+			$this->s_current_template_name => MEDIA_URL.$this->s_template_dir.'/'.$this->s_current_template_name.'/'.$this->s_current_template_name.'.css',
 			'game-js' => MEDIA_URL.'js/game.js',
 
 		);

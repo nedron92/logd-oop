@@ -49,7 +49,7 @@ class LOGD_Cache {
 	 */
 	private function __construct()
 	{
-		require_once(CORE_PATH."classes/cache/phpfastcache".EXT);
+		require_once(CORE_PATH.'classes'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'phpfastcache'.EXT);
 		$this->o_cache = phpFastCache();
 	}
 

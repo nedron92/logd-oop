@@ -9,5 +9,5 @@
  */
 
 //redirect to the public directory if we needed it.
-Header('Location: public/',301);
+header('Location: public/',301);
 exit (1);
