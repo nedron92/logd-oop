@@ -122,26 +122,23 @@ class phpFastCache {
 
     public static function getAutoClass($config) {
 
-        $driver = "files";
+        $driver = null;
         $path = self::getPath(false,$config);
-        if(is_writeable($path)) {
-            $driver = "files";
-        }else if(extension_loaded('pdo_sqlite') && is_writeable($path)) {
-            $driver = "sqlite";
-        }else if(extension_loaded('apc') && ini_get('apc.enabled') && strpos(PHP_SAPI,"CGI") === false)
-        {
-            $driver = "apc";
-        }else if(class_exists("memcached")) {
-            $driver = "memcached";
-        }elseif(extension_loaded('wincache') && function_exists("wincache_ucache_set")) {
-            $driver = "wincache";
-        }elseif(extension_loaded('xcache') && function_exists("xcache_get")) {
-            $driver = "xcache";
-        }else if(function_exists("memcache_connect")) {
-            $driver = "memcache";
-       /* }else if(class_exists("Redis")) {
-            $driver = "redis";*/
-        }else {
+
+	    if(extension_loaded('apc') && ini_get('apc.enabled') && strpos(PHP_SAPI,"CGI") === false)
+	    {
+		    $driver = "apc";
+	    }else if(class_exists("memcached")) {
+		    $driver = "memcached";
+	    }else if(function_exists("memcache_connect")) {
+		    $driver = "memcache";
+	    }elseif(extension_loaded('wincache') && function_exists("wincache_ucache_set")) {
+		    $driver = "wincache";
+	    }elseif(extension_loaded('xcache') && function_exists("xcache_get")) {
+		    $driver = "xcache";
+	    }else if(extension_loaded('pdo_sqlite') && is_writeable($path)) {
+		    $driver = "sqlite";
+	    }else {
             $driver = "files";
         }
 

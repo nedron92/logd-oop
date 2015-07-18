@@ -51,7 +51,7 @@ class LOGD_Cache {
 	{
 		$config = include (CORE_PATH.'classes'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'phpfastcache'.EXT);
 		phpFastCache::setup($config);
-		$this->o_cache = phpFastCache('memcache');
+		$this->o_cache = phpFastCache();
 	}
 
 	/**
