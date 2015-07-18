@@ -95,9 +95,13 @@ class LOGD_Replacer {
 			if(is_null($value))
 			{ $key_value = null; }
 
-			//@todo do translation later
+			//todo do translation later
 			Template::get_instance()->set_output($key,$key_value);
-			Template::get_instance()->set_output($key.'-link',$value.'?'.LOGD_Core::create_random_uri_string());
+			if ( is_null($key_value) ) {
+				Template::get_instance()->set_output($key.'-link',$value);
+			}else{
+				Template::get_instance()->set_output($key.'-link',$value.'?'.LOGD_Core::create_random_uri_string());
+			}
 		}
 	}
 }

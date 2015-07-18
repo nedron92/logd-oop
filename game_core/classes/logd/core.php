@@ -112,7 +112,7 @@ class LOGD_Core
 	/**
 	 * Create a random string for append at the uri
 	 *
-	 * @return string return the unique/random string
+	 * @return string   the unique/random string
 	 */
 	public static function create_random_uri_string()
 	{

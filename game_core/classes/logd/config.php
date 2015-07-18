@@ -21,6 +21,7 @@ class LOGD_Config
 	public static function get_config()
 	{
 		return array(
+
 			'html' => array (
 
 				//the default standard for the 'more' section in a template

@@ -3,9 +3,10 @@
  * @author  Daniel Becker  <becker_leinad@hotmail.com>
  * @date    07.03.2015
  * @package js
+ * @subpackage  templates
  *
  * @description
- * the main javascript file, based on jQuery
+ * the game javascript file for the template yar2, based on jQuery
  *
  */
 

@@ -295,8 +295,8 @@ class LOGD_Template {
 
 			'bootstrap' => MEDIA_URL.'css/bootstrap/bootstrap.css',
 			$this->s_current_template_name => MEDIA_URL.$this->s_template_dir.'/'.$this->s_current_template_name.'/'.$this->s_current_template_name.'.css',
-			'game-js' => MEDIA_URL.'js/game.js',
-
+			'game-js' => MEDIA_URL.'js/'.$this->s_template_dir.'/'.$this->s_current_template_name .'/game.js',
+			'main-js' => MEDIA_URL.'js/main.js',
 		);
 
 		foreach($a_standard_scripts as $scripts)
@@ -309,5 +309,6 @@ class LOGD_Template {
 				{ echo '<script src="'.$scripts.'"></script>'; }
 			}
 		}
+
 	}
 }
