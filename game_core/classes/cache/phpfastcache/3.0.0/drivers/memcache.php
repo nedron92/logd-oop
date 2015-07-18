@@ -28,6 +28,8 @@ class phpfastcache_memcache extends BasePhpFastCache implements phpfastcache_dri
         }
 	    if(class_exists("Memcache")) {
 		    $this->instant = new Memcache();
+		    $this->connectServer();
+		    if( $this->fallback === true) $this->backup();
 	    } else {
 		    $this->fallback = true;
 	    }
@@ -43,10 +45,11 @@ class phpfastcache_memcache extends BasePhpFastCache implements phpfastcache_dri
         }
 
         foreach($server as $s) {
-            $name = $s[0]."_".$s[1];
+	        $name = $s[0]."_".$s[1];
             if(!isset($this->checked[$name])) {
 	            try {
-		            if(!$this->instant->addserver($s[0],$s[1])) {
+		            $this->instant->addserver($s[0],$s[1]);
+		            if( empty($this->instant->getserverstatus($s[0],$s[1])) ) {
 			            $this->fallback = true;
 		            }
 

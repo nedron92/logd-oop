@@ -24,8 +24,9 @@ if(!function_exists("phpFastCache")) {
 	 *
 	 * @return mixed|BasePhpFastCache
 	 */
-	function phpFastCache($storage = "auto", $config = array()) {
+	function phpFastCache($storage = "auto", $config = array(), $b_second = false) {
         $storage = strtolower($storage);
+		static $o_fallback = null;
         if(empty($config)) {
             $config = phpFastCache::$config;
         }
@@ -38,11 +39,18 @@ if(!function_exists("phpFastCache")) {
         $instance = md5(json_encode($config).$storage);
 		if(!isset(phpFastCache_instances::$instances[$instance])) {
             $class = "phpfastcache_".$storage;
-            phpFastCache::required($storage);
+			phpFastCache::required($storage);
 			phpFastCache_instances::$instances[$instance] = new $class($config);
+			if($b_second) {
+				$o_fallback = phpFastCache_instances::$instances[$instance];
+			}
 		}
 
-		return phpFastCache_instances::$instances[$instance];
+		if(is_null($o_fallback)) {
+			return phpFastCache_instances::$instances[$instance];
+		}else{
+			return $o_fallback;
+		}
 	}
 }
 

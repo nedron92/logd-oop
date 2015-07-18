@@ -287,7 +287,6 @@ class LOGD_Template {
 	 */
 	private function load_standard_css_js()
 	{
-		var_dump(MEDIA_URL);
 		//setting the array with all needed css/js scripts as standard
 		$a_standard_scripts = array(
 			'jQuery' => MEDIA_URL.'js/libs/jquery-2.1.3.js',

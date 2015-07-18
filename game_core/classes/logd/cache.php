@@ -49,8 +49,9 @@ class LOGD_Cache {
 	 */
 	private function __construct()
 	{
-		require_once(CORE_PATH.'classes'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'phpfastcache'.EXT);
-		$this->o_cache = phpFastCache();
+		$config = include (CORE_PATH.'classes'.DIRECTORY_SEPARATOR.'cache'.DIRECTORY_SEPARATOR.'phpfastcache'.EXT);
+		phpFastCache::setup($config);
+		$this->o_cache = phpFastCache('memcache');
 	}
 
 	/**

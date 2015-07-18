@@ -259,7 +259,7 @@ abstract class BasePhpFastCache {
 
 
     protected function backup() {
-        return phpFastCache(phpFastCache::$config['fallback']);
+        return phpFastCache(phpFastCache::$config['fallback'],phpFastCache::$config,true);
     }
 
 

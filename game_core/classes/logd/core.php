@@ -37,8 +37,10 @@ class LOGD_Core
 	 */
 	private static $a_modules = array();
 
+	private static $s_random_string = null;
+
 	/**
-	 * Return the the seed for the number generator
+	 * Return the seed for the number generator
 	 *
 	 * @return  float  the seed
 	 *
@@ -110,19 +112,24 @@ class LOGD_Core
 	/**
 	 * Create a random string for append at the uri
 	 *
-	 * @param int $i_length optional, the length of the random string
 	 * @return string return the unique/random string
 	 */
-	public static function create_random_uri_string($i_length = 20)
+	public static function create_random_uri_string()
 	{
-		if(is_null($_SERVER['UNIQUE_ID']) || $_SERVER['UNIQUE_ID'] === '')
-		{
-			$s_randomstring = substr(str_shuffle(base64_encode(sha1(time()))),0,$i_length);
-		}else{
-			$s_random = str_shuffle($_SERVER['UNIQUE_ID'].time());
-			$s_randomstring = substr(str_shuffle(base64_encode($s_random)),0,$i_length);
+		if ( is_null(self::$s_random_string) ) {
+			if(is_null($_SERVER['UNIQUE_ID']) || $_SERVER['UNIQUE_ID'] === '')
+			{
+				$s_random = str_shuffle(PHP_OS.time());
+				$s_random_string = str_shuffle(base64_encode($s_random));
+			}else{
+				$s_random = str_shuffle($_SERVER['UNIQUE_ID'].time());
+				$s_random_string = str_shuffle(base64_encode($s_random));
+			}
+
+			self::$s_random_string = $s_random_string;
 		}
-		return $s_randomstring;
+
+		return self::$s_random_string;
 	}
 
 } 
