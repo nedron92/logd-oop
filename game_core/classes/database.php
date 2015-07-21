@@ -12,6 +12,6 @@
  *
  */
 
-class Database extends Database_Database{
+class Database extends Database_Connection{
 
 } 

@@ -71,25 +71,13 @@ Replacer::page_header('LOGD - OOP');
 	{ $e->print_error(); }
 */
 
+var_dump(Database::factory()->get_driver_name());
+
 //todo: implement routing
+//$test = Routing::init()->get_view();
 
-$a_tables = array('accounts','test');
-$a_alias  = array('acc','test');
-
-$a_mapping = array(
-	'acc.acct_id' => '1',
-	'test.id' => '1',
-);
-
-/*
-$result = Database::delete($a_tables,$a_alias,$a_mapping);
-if($result->success())
-{
-	Replacer::output('You registered successfully. Enjoy the Game');
-}else{
-	Replacer::output('You registered successfully. Enjoy the Game2');
-}
-*/
+//$a_db_mapping = array('id' => '1');
+//$result = Database::select_where(null,'views',$a_db_mapping);
 
 //Render the first view
 View::create('start')->render();
