@@ -74,9 +74,9 @@ class LOGD_Replacer {
 	public static function page_footer()
 	{
 		Template::get_instance()->set_output('copyright',LOGD::LOGD_COPYRIGHT);
-		Template::get_instance()->set_output('pagegen','Pagegen: '.round(microtime(true)-PAGE_START_TIME,3).'s');
-		Template::get_instance()->set_output('version','Version: '.LOGD::LOGD_VERSION);
-		Template::get_instance()->set_output('source','Sourcelink:');
+		Template::get_instance()->set_output('pagegen',__('pagegen').': '.round(microtime(true)-PAGE_START_TIME,3).'s');
+		Template::get_instance()->set_output('version',__('version').': '.LOGD::LOGD_VERSION);
+		Template::get_instance()->set_output('source',__('source').':');
 	}
 
 	/**
@@ -91,7 +91,7 @@ class LOGD_Replacer {
 
 		foreach($a_links as $key => $value)
 		{
-			$key_value = $key;
+			$key_value = __($key);
 			if(is_null($value))
 			{ $key_value = null; }
 

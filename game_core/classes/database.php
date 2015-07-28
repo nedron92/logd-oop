@@ -7,8 +7,8 @@
  * @subpackage LOGD
  *
  * @description
- * This class represents a wrapper between the connection and the result class.
- * It also holds the Exceptions.
+ * The database connection class.
+ * This class will load the right driver, based on the DB_TYPE in '.dbconfig.php'
  *
  */
 

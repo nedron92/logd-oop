@@ -1,4 +1,4 @@
-<?php
+<?php defined('CORE_PATH') or die('No direct script access.');
 
 /**
  * @file    connection.php
@@ -8,29 +8,67 @@
  * @subpackage database
  *
  * @description
- *
+ * The database connection class.
+ * This class will load the right driver, based on the DB_TYPE in '.dbconfig.php'
  */
 
 class Database_Connection {
 
+	/**
+	 * @const string    The prefix (with correct namespace) of all Database-Drivers
+	 */
 	const DRIVER_PREFIX = '\Database\Driver_';
 
-	private function __construct() {
+	/**
+	 * @var Database_Drivers $o_instance    the current instance of the Database-Connection
+	 */
+	private static $o_instance = null;
 
-	}
+	/**
+	 * Defined the constructor as private, because of singleton pattern
+	 */
+	private function __construct()
+	{ }
 
+	/**
+	 * Defined the clone function as private, because of singleton pattern
+	 */
 	private function __clone()
 	{}
 
+
 	/**
-	 * @return Database_Drivers
+	 * The factory method will load the correct driver for the database-connection,
+	 * based on the DB_TYPE constant in the '.dbconfig.php' file.
+	 * It also will check, if driver-only-methods have the DB_TYPE prefix, because of
+	 * readability and usage. (driver-only-methods are methods of a driver, that not specified in the
+	 * abstract Database_Driver class)
+	 *
+	 * @return Database_Drivers| \Database\Driver_MySQL
+	 * @throws LOGD_Exception
 	 */
 	public static function factory() {
 
-		include dirname(LOGD_ROOT).'/.dbconfig.php';
+		if ( null === self::$o_instance ) {
 
-		$s_class = self::DRIVER_PREFIX.DB_TYPE;
-		return new $s_class;
+			try {
+				$s_class = self::DRIVER_PREFIX.DB_TYPE;
+
+				if(!class_exists($s_class)) {
+					$message = 'Class not found: '.$s_class.'<br>';
+					$message.= 'Maybe wrong driver: '.DB_TYPE;
+					throw new LOGD_Exception($message,900);
+				}
+
+				self::$o_instance =  new $s_class;
+				self::$o_instance->check_methods();
+
+			}catch (LOGD_Exception $e) {
+				$e->print_error();
+			}
+		}
+
+		return self::$o_instance;
 	}
 
 }

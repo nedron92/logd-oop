@@ -18,7 +18,7 @@ define('PAGE_START_TIME',microtime(true));
 session_start();
 
 /**
- * @var string $game The directory in which your own application/game files are located.
+ * @var string $game The directory in which your own game files are located.
  *                   (For example to extend a Core Class or create new Classes).
  *                   The game directory must contain the bootstrap.php file.
  */
@@ -101,6 +101,9 @@ if(PHP_OS === 'Linux')
 
 define('BASE_URL', $s_document_root);
 define('MEDIA_URL', BASE_URL.basename(MEDIA_PATH).'/');
+
+//including the .dbconfig.php
+include dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT;
 
 // Bootstrap the game
 require GAME_PATH.'bootstrap'.EXT;

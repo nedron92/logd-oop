@@ -36,8 +36,7 @@ class LOGD_View {
 	 */
 	public function __construct($s_file = null)
 	{
-		if($s_file === null)
-		{
+		if($s_file === null) {
 			$this->s_filename = 'start';
 		}else{
 			$this->s_filename = $s_file;
@@ -73,7 +72,7 @@ class LOGD_View {
 	 */
 	public function render($with_template = true)
 	{
-		$this->before();
+		if($with_template) $this->before();
 
 		$path = LOGD::find_file(self::$s_views,$this->s_filename);
 

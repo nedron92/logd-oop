@@ -11,7 +11,7 @@
  *
  */
 
-class Database_Connection {
+class Database_Connection1 {
 
 	/**
 	 * @var null|PDO    the database connection object

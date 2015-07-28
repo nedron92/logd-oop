@@ -38,16 +38,6 @@ class LOGD_Config
 	}
 
 	/**
-	 * Get only the configured modules, no more.
-	 *
-	 * @return mixed    get all configured modules
-	 */
-	public static function get_configured_modules()
-	{
-		return self::get_config()['modules'];
-	}
-
-	/**
 	 * Return the default html array or only a specified section
 	 * (useful as a fallback method)
 	 *

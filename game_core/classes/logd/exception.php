@@ -17,6 +17,8 @@ class LOGD_Exception extends Exception{
 	 */
 	private $m_code;
 
+	private $s_trace;
+
 	/**
 	 * Creates a new exception.
 	 *
@@ -32,17 +34,28 @@ class LOGD_Exception extends Exception{
 		// Save the unmodified code
 		// @link http://bugs.php.net/39615
 		$this->m_code = $code;
+		$this->s_trace = $this->getTraceAsString();
 	}
 
 	/**
 	 * Printed out the errors to the error view
 	 */
-	public function print_error(){
-		define('ERROR_MESSAGE',$this->message);
-		define('ERROR_CODE',$this->m_code);
+	public function print_error() {
 
-		if(strpos(ERROR_CODE,'TEMPLATE') !== false) View::create('error')->render(false);
-		else View::create('error')->render();
+		if(strpos($this->m_code,'TEMPLATE') !== false) {
+			View::create('error')
+				->bind_by_name('s_error_message',$this->message)
+				->bind_by_name('s_error_code'   ,$this->m_code)
+				->render(false);
+		}
+		else {
+			View::create('error')
+				->bind_by_name('s_error_message',$this->message)
+				->bind_by_name('s_error_code'   ,$this->m_code)
+				->bind_by_name('s_error_file'   ,$this->file)
+				->bind_by_name('s_error_line'   ,$this->line)
+				->render();
+		}
 
 		exit(1);
 	}

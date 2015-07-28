@@ -8,6 +8,7 @@
  * @subpackage logd
  *
  * @description
+ * This class will route all request from '?viewfile?{FILENAME}' and will render the right view.
  *
  */
 class LOGD_Routing {

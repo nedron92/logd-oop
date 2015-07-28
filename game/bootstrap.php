@@ -31,12 +31,6 @@ foreach($a_include_paths as $value)
 date_default_timezone_set('Europe/Berlin');
 
 /*
- * Set the default locale.
- * @todo set it later via database
- */
-setlocale(LC_ALL, 'en_EN.utf-8');
-
-/*
  * Enable the auto-loader.
  * it will be accept namespace-based classes and also classes
  * with underscores. It will replace the underscores as path to the class.
@@ -45,6 +39,8 @@ setlocale(LC_ALL, 'en_EN.utf-8');
 spl_autoload_register(function($class) {
 	spl_autoload(str_replace('_', DIRECTORY_SEPARATOR, $class));
 });
+
+LOGD_I18N::set_language('de_DE');
 
 //Initialize the random number generator
 mt_srand(LOGD::make_seed());
@@ -62,22 +58,9 @@ mt_srand(LOGD::make_seed());
 // @todo set it later via database
 Replacer::page_header('LOGD - OOP');
 
-/*
- * Try to load all configured modules
- */
-/*try{
-	LOGD::load_modules(Config::get_configured_modules());
-}catch (LOGD_Exception $e)
-	{ $e->print_error(); }
-*/
-
-var_dump(Database::factory()->get_driver_name());
-
+$test = Database::factory();
 //todo: implement routing
 //$test = Routing::init()->get_view();
-
-//$a_db_mapping = array('id' => '1');
-//$result = Database::select_where(null,'views',$a_db_mapping);
 
 //Render the first view
 View::create('start')->render();

@@ -58,9 +58,11 @@ class LOGD_Template {
 	 *
 	 * @return LOGD_Template|null           the instance
 	 */
-	public static function get_instance($s_template_name=null,$b_use_cache=true) {
-		if ( null === self::$o_instance )
-		{ self::$o_instance = new self( $s_template_name, $b_use_cache ); }
+	public static function get_instance($s_template_name=null,$b_use_cache=true)
+	{
+		if ( null === self::$o_instance ) {
+			self::$o_instance = new self( $s_template_name, $b_use_cache );
+		}
 
 		return self::$o_instance;
 	}
@@ -80,15 +82,17 @@ class LOGD_Template {
 	 */
 	private function __construct($s_template_name=null,$b_use_cache=true)
 	{
-		if(is_null($s_template_name))
+		if(is_null($s_template_name)) {
 			$this->s_current_template_name = $this->s_start_template;
-		else
+		}else {
 			$this->s_current_template_name = $s_template_name;
+		}
 
-		try{
+		try {
 			$this->load_template($this->s_current_template_name,$b_use_cache);
-		}catch (LOGD_Exception $exc)
-		{$exc->print_error(); }
+		}catch (LOGD_Exception $exc) {
+			$exc->print_error();
+		}
 	}
 
 	/**
@@ -108,7 +112,7 @@ class LOGD_Template {
 	 *                                      the cache (true) or not(false)
 	 *                                      default: true
 	 */
-	public function load_template($s_template_name=null,$b_use_cache=true)
+	public function load_template($s_template_name=null, $b_use_cache=true)
 	{
 		//  user standard template if nothing is given
 		if (is_null($s_template_name)) $s_template_name = $this->s_start_template;
@@ -220,9 +224,9 @@ class LOGD_Template {
 				$this->load_standard_css_js();
 			}
 
+		} catch(LOGD_Exception $e) {
+			$e->print_error();
 		}
-		catch(LOGD_Exception $e)
-		{ $e->print_error(); }
 
 	}
 
@@ -237,7 +241,7 @@ class LOGD_Template {
 	public function render($b_return_output = false)
 	{
 		$this->template_replace();
-		if(!$b_return_output){
+		if(!$b_return_output) {
 			echo $this->s_current_template;
 			return null;
 		}else{
@@ -254,16 +258,15 @@ class LOGD_Template {
 	 */
 	public function set_output($itemname, $value=null, $stats=false)
 	{
-
 		if(!$stats)
 		{
-			if(strpos($this->s_current_template,$itemname) != false)
-			{ $this->a_output[$itemname].= $value; }
-		}
-		else
-		{
-			if(strpos($this->a_stats_html[$itemname],$itemname) != false)
-			{ $this->a_output['stats'].= str_replace("{"."$itemname"."}",$value,$this->a_stats_html[$itemname]); }
+			if(strpos($this->s_current_template,$itemname) != false) {
+				$this->a_output[$itemname].= $value;
+			}
+		} else {
+			if(strpos($this->a_stats_html[$itemname],$itemname) != false) {
+				$this->a_output['stats'].= str_replace("{"."$itemname"."}",$value,$this->a_stats_html[$itemname]);
+			}
 		}
 	}
 
@@ -278,8 +281,9 @@ class LOGD_Template {
 		$a_replace = $this->a_output;
 		if(is_null($a_replace)) $a_replace = array();
 
-		foreach($a_replace as $key => $value)
-		{ $this->s_current_template = str_replace("{"."$key"."}",$value,$this->s_current_template); }
+		foreach($a_replace as $key => $value) {
+			$this->s_current_template = str_replace("{"."$key"."}",$value,$this->s_current_template);
+		}
 	}
 
 	/**
@@ -299,8 +303,7 @@ class LOGD_Template {
 			'main-js' => MEDIA_URL.'js/main.js',
 		);
 
-		foreach($a_standard_scripts as $scripts)
-		{
+		foreach($a_standard_scripts as $scripts) {
 			switch(pathinfo($scripts, PATHINFO_EXTENSION))
 			{
 				case 'css':
@@ -309,6 +312,5 @@ class LOGD_Template {
 				{ echo '<script src="'.$scripts.'"></script>'; }
 			}
 		}
-
 	}
 }

@@ -8,7 +8,8 @@
  * This file hold all needed database configuration constants
  */
 
-//the database-type (mysql, sql-lite etc.)
+//the database-type (mysql, sql-lite etc.).
+//Look at game_core/database/drivers for all implemented database-drivers
 const DB_TYPE = 'mysql';
 
 //a prefix of all table names (if you changed the table-name-structure

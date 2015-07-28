@@ -5,9 +5,9 @@
  * @author  Daniel   <becker_leinad@hotmail.com>
  * @date    18.07.2015
  * @package game_core
- * @subpackage logd
  *
  * @description
+ * This class will route all request from '?viewfile?{FILENAME}' and will render the right view.
  *
  */
 class Routing  extends LOGD_Routing{
