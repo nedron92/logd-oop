@@ -22,10 +22,10 @@ class LOGD_Replacer {
 	public static function addnav($title,$link=null)
 	{
 		if(!$link) {
-			$output = '<p class="nav-head">&#151;  '.$title.'  &#151;</p>';
-			Template::get_instance()->set_output('navigation',$output);
+			$output = '<p class="nav-head">&#151;  '.__($title).'  &#151;</p>';
+			Template::get_instance()->set_output('navigation',__($output));
 		}
-		else Template::get_instance()->set_output('navigation','<a href="'.$link.'?'.LOGD_Core::create_random_uri_string().'">'.$title.'</a>');
+		else Template::get_instance()->set_output('navigation','<a href="'.$link.'?'.LOGD_Core::create_random_uri_string().'">'.__($title).'</a>');
 	}
 
 	/**
@@ -35,7 +35,7 @@ class LOGD_Replacer {
 	 */
 	public static function output($output)
 	{
-		Template::get_instance()->set_output('game',$output.'<br>');
+		Template::get_instance()->set_output('game',__($output).'<br>');
 	}
 
 	/**
@@ -48,11 +48,11 @@ class LOGD_Replacer {
 	{
 		if(is_null($value))
 		{
-			Template::get_instance()->set_output('stats-head',$title,true);
+			Template::get_instance()->set_output('stats-head',__($title),true);
 		}else
 		{
-			Template::get_instance()->set_output('stats-left',$title,true);
-			Template::get_instance()->set_output('stats-right',$value,true);
+			Template::get_instance()->set_output('stats-left',__($title),true);
+			Template::get_instance()->set_output('stats-right',__($value),true);
 		}
 
 	}
@@ -64,7 +64,7 @@ class LOGD_Replacer {
 	 */
 	public static function page_header($title)
 	{
-		Template::get_instance()->set_output('title',$title);
+		Template::get_instance()->set_output('title',__($title));
 	}
 
 	/**

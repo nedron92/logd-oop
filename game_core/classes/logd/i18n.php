@@ -63,6 +63,6 @@ if ( ! function_exists('__'))
 {
 	function __($s_translate_id)
 	{
-		return LOGD_I18N::translate($s_translate_id);
+		return I18N::translate($s_translate_id);
 	}
 }

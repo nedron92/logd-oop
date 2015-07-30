@@ -1,4 +1,4 @@
-<?php
+<?php defined('CORE_PATH') or die('No direct script access.');
 /**
  * Created by PhpStorm.
  * User: nedron
@@ -17,6 +17,11 @@ return array(
 	'copyright' => 'Copyright',
 	'pagegen' => 'Seitengenerierung',
 	'version' => 'Version',
-	'source' => 'Source'
+	'source' => 'Source',
 
+	// V I T A L  / S T A T S    S E C T I O N
+	'stat_title_vital' => 'Vital info',
+	'stat_value_health' => 'Health',
+	'stat_value_attack' => 'Attack Value',
+	'stat_value_defense' => 'Defense Value',
 );
