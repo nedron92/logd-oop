@@ -40,7 +40,9 @@ spl_autoload_register(function($class) {
 	spl_autoload(str_replace('_', DIRECTORY_SEPARATOR, $class));
 });
 
-LOGD_I18N::set_language('de_DE');
+//Initialize the language Class
+//todo this is later only a fallback if nothing found in the database
+I18N::init(GAME_LANGUAGE);
 
 //Initialize the random number generator
 mt_srand(LOGD::make_seed());

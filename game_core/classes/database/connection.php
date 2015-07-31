@@ -55,8 +55,8 @@ class Database_Connection {
 				$s_class = self::DRIVER_PREFIX.DB_TYPE;
 
 				if(!class_exists($s_class)) {
-					$message = 'Class not found: '.$s_class.'<br>';
-					$message.= 'Maybe wrong driver: '.DB_TYPE;
+					$message = __('error_class_not_found','errors').'<strong>'.$s_class.'</strong><br>';
+					$message.= __('error_wrong_driver','errors').'<strong>'.DB_TYPE.'</strong>';
 					throw new LOGD_Exception($message,900);
 				}
 

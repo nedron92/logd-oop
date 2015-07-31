@@ -92,10 +92,9 @@ abstract class Database_Drivers {
 
 		if(sizeof($a_failed_methods) > 0)
 		{
-			$message = 'Failure with you driver-specified-methods.<br>';
-			$message.= 'Please check if they have this prefix: '.DB_TYPE.'.<br>';
-			$message.= 'It is better for readability and usage of different drivers!<br>';
-			$message.= 'The following methods you have to check: <br><b>'.implode(', ',$a_failed_methods).'</b>';
+			$message = trim(__('error_check_methods','errors')).'<b>'.implode(', ',$a_failed_methods).'</b>';
+			$message = preg_replace('/\t+/', '', $message);
+
 			throw new LOGD_Exception($message,1000);
 		}
 	}

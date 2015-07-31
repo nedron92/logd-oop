@@ -105,5 +105,8 @@ define('MEDIA_URL', BASE_URL.basename(MEDIA_PATH).'/');
 //including the .dbconfig.php
 include dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT;
 
+//define the standard-language
+define('GAME_LANGUAGE','de_DE');
+
 // Bootstrap the game
 require GAME_PATH.'bootstrap'.EXT;
