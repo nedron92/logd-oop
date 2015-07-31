@@ -20,8 +20,8 @@ return array(
 	'source' => 'Source',
 
 	// V I T A L  / S T A T S    S E C T I O N
-	'stat_title_vital' => 'Vital-Info',
-	'stat_value_health' => 'Gesundheit',
-	'stat_value_attack' => 'Angriffswert',
-	'stat_value_defense' => 'Verteidigungswert',
+	'stat_title_vital' => 'Vital info',
+	'stat_value_health' => 'Health',
+	'stat_value_attack' => 'Attack Value',
+	'stat_value_defense' => 'Defense Value',
 );

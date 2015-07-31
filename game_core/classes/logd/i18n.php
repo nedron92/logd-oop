@@ -10,7 +10,7 @@ class LOGD_I18N
 {
 
 	private static $s_language_code = 'en_EN';
-	const LANGUAGE_PATH = CORE_PATH.'i18n'.DIRECTORY_SEPARATOR;
+	private static $s_language_path = null;
 	private static $a_language_strings = array();
 
 	/**
@@ -39,10 +39,14 @@ class LOGD_I18N
 
 	public static function translate($s_translate_id)
 	{
+		if(is_null(self::$s_language_path)) {
+			self::$s_language_path = CORE_PATH.'i18n'.DIRECTORY_SEPARATOR;
+		}
+
 		if(sizeof(self::$a_language_strings) === 0 || sizeof(self::$a_language_strings[self::$s_language_code]) === 0) {
 			$s_subdir = self::$s_language_code.DIRECTORY_SEPARATOR;
 			$s_language_file = self::$s_language_code.EXT;
-			self::$a_language_strings[self::$s_language_code] = include_once self::LANGUAGE_PATH.$s_subdir.$s_language_file;
+			self::$a_language_strings[self::$s_language_code] = include_once self::$s_language_path.$s_subdir.$s_language_file;
 		}
 
 		if(is_null(self::$a_language_strings[self::$s_language_code][$s_translate_id]) ||
