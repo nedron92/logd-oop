@@ -46,7 +46,7 @@ $s_media = 'media';
 define('EXT', '.php');
 
 /*
- * Set the PHP error reporting level.
+ * Set the PHP error reporting level. @todo add a debug level
  */
 error_reporting(E_ALL ^ E_NOTICE);
 
@@ -102,10 +102,10 @@ if(PHP_OS === 'Linux')
 define('BASE_URL', $s_document_root);
 define('MEDIA_URL', BASE_URL.basename(MEDIA_PATH).'/');
 
-//including the .dbconfig.php
+//including the .dbconfig.php with all Database-Constantsy
 include dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT;
 
-//define the standard-language
+//define the standard-language, @todo later via database
 define('GAME_LANGUAGE','de_DE');
 
 // Bootstrap the game

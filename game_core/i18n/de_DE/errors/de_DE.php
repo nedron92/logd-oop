@@ -1,9 +1,14 @@
 <?php defined('CORE_PATH') or die('No direct script access.');
 /**
- * Created by PhpStorm.
- * User: nedron
- * Date: 28.07.15
- * Time: 17:22
+ * @file    de_DE.php
+ * @author  Daniel Becker   <becker_leinad@hotmail.com>
+ * @date    28.07.2015
+ * @package game_core
+ * @subpackage i18n/de_DE
+ *
+ * @description
+ * The german language file for error translations of this game
+ *
  */
 
 return array(

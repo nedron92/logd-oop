@@ -1,16 +1,30 @@
 <?php defined('CORE_PATH') or die('No direct script access.');
-
 /**
- * Created by PhpStorm.
- * User: nedron
- * Date: 28.07.15
- * Time: 17:34
+ * @file    Replacer.php
+ * @author  Daniel Becker   <becker_leinad@hotmail.com>
+ * @date    28.07.2015
+ * @package game_core
+ * @subpackage LOGD
+ *
+ * @description
+ * This class provide methods for translations in all supported languages
  */
+
 class LOGD_I18N
 {
-
+	/**
+	 * @var null|string     The language code (e.g. de_DE/en_EN)
+	 */
 	private static $s_language_code = null;
+
+	/**
+	 * @var null|string     the path to the language, will be calculated on ::init
+	 */
 	private static $s_language_path = null;
+
+	/**
+	 * @var array           this array contains all current language strings
+	 */
 	private static $a_language_strings = array();
 
 	/**
