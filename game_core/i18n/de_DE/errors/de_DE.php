@@ -19,4 +19,6 @@ return array(
 								Überprüfe bitte, ob sie das Prefix: <strong>'.DB_TYPE.'</strong> haben.<br>
 								Diese Vorsorge ist für Lesbarkeit und Nutzubarkeit eingerichtet worden. <br>
 								Folgende Methoden solltest du nocheinmal prüfen: <br>',
+
+	'error_dbconfig_file' => '<br>Da stimmt etwas mit deiner <strong>.dbconfig.php</strong>-Datei nicht. Überprüfe sie!',
 );

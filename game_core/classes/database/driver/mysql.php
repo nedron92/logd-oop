@@ -28,7 +28,7 @@ class Driver_MySQL extends \Database_Drivers{
 		}catch (\PDOException $e)
 		{
 			try{
-				$message = $e->getMessage().'<br>There ist something wrong in your <b>.dbconfig.php</b>-File!, Check it.';
+				$message = $e->getMessage() . __('error_dbconfig_file','errors');
 				$code = 'SQL-ERROR -> '.$e->getCode();
 				throw new \LOGD_Exception($message,$code);
 			}catch (\LOGD_Exception $exc)
@@ -37,10 +37,17 @@ class Driver_MySQL extends \Database_Drivers{
 	}
 
 
+	/**
+	 * @param $s_table_name
+	 *
+	 * @return $this
+	 */
 	public function insert_into($s_table_name) {
 		parent::insert_into($s_table_name);
 		var_dump(__FUNCTION__);
 		var_dump($this->o_database_connection);
+
+		return $this;
 	}
 
 
