@@ -40,19 +40,26 @@ spl_autoload_register(function($class) {
 	spl_autoload(str_replace('_', DIRECTORY_SEPARATOR, $class));
 });
 
-//Initialize the language Class
-//todo this is later only a fallback if nothing found in the database
-I18N::init(GAME_LANGUAGE);
-
 //Initialize the random number generator
 mt_srand(LOGD::make_seed());
 
-if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.php') &&
-     file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default.php') )
+if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT) &&
+     file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default'.EXT) )
 	{
-		View::create('install')->render();
+		$s_post = Globals::get('_POST');
+		I18N::init();
+		if(is_null($s_post['game_language'])) {
+			I18N::set_language('en_EN');
+		}else{
+			I18N::set_language($s_post['game_language']);
+		}
+		new \Install\Installer($s_post['install_step']);
 		exit (1);
 	}
+
+//Initialize the language Class
+//todo this is later only a fallback if nothing found in the database
+//I18N::init(GAME_LANGUAGE);
 
 //including the .dbconfig.php with all Database-Constants
 include dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT;

@@ -46,7 +46,7 @@
             </div>
         </div>
 
-        <div class="more">
+        <div class="more {more-hidden}">
           <p class="motd"> <a href="{motd-link}">{motd}</a> </p>
 		  <p> <a href="{mail-link}">{mail}</a> </p>
           <p> <a href="{petition-link}">{petition}</a> </p>
@@ -83,7 +83,7 @@
 
         <div class="content-right col-md-2 col-xs-2">
 
-            <div class="content-online ">
+            <div class="content-online {online-hidden}">
                 <div class="online-top">
                     <img src="<?php echo $template_directory;?>images/navtop.png" alt="{navtop}"/>
                 </div>

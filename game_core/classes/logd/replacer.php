@@ -83,21 +83,15 @@ class LOGD_Replacer {
 	 * Setting the links for motd, mail etc.
 	 *
 	 * @param array $a_links        the array of all needed links
-	 * @param bool  $b_is_install   check if the view is the install-view
 	 */
-	public static function set_links($a_links=array(),$b_is_install=false)
+	public static function set_links($a_links=array())
 	{
 		if($a_links === array())
 		{ $a_links = Config::get_default_html('section_more'); }
 
 		foreach($a_links as $key => $value)
 		{
-			if ( !$b_is_install ) {
-				$key_value = __($key);
-			}else{
-				$key_value = null;
-				$value = null;
-			}
+			$key_value = __($key);
 
 			if(is_null($value))
 			{ $key_value = null; }
@@ -108,6 +102,19 @@ class LOGD_Replacer {
 				Template::get_instance()->set_output($key.'-link',$value);
 			}else{
 				Template::get_instance()->set_output($key.'-link',$value.'?'.LOGD_Core::create_random_uri_string());
+			}
+		}
+	}
+
+	/**
+	 * @param array $a_hidden_fields
+	 */
+	public static function set_hidden_fields($a_hidden_fields=array())
+	{
+		if($a_hidden_fields !== array()) {
+			foreach($a_hidden_fields as $s_hidden_field) {
+				$s_hidden_field.='-hidden';
+				Template::get_instance()->set_output($s_hidden_field,'hidden');
 			}
 		}
 	}

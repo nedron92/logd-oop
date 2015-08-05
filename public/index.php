@@ -103,7 +103,7 @@ define('BASE_URL', $s_document_root);
 define('MEDIA_URL', BASE_URL.basename(MEDIA_PATH).'/');
 
 //define the standard-language, @todo later via database
-define('GAME_LANGUAGE','de_DE');
+//define('GAME_LANGUAGE','en_EN');
 
 // Bootstrap the game
 require GAME_PATH.'bootstrap'.EXT;

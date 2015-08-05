@@ -28,6 +28,11 @@ class LOGD_I18N
 	private static $a_language_strings = array();
 
 	/**
+	 * @var array           the array contains all supported languages (key = code, value = Language-Name)
+	 */
+	private static $a_supported_languages = array();
+
+	/**
 	 * Defined the constructor as private, because of no need for it.
 	 */
 	private function __construct()
@@ -39,9 +44,8 @@ class LOGD_I18N
 	private function __clone()
 	{}
 
-	public static function init($s_language)
+	public static function init()
 	{
-		self::set_language($s_language);
 		if(is_null(self::$s_language_path)) {
 			self::$s_language_path = CORE_PATH.'i18n'.DIRECTORY_SEPARATOR;
 		}
@@ -89,8 +93,80 @@ class LOGD_I18N
 		}
 	}
 
+	/**
+	 *
+	 */
 	public static function clear_language_array(){
 		self::$a_language_strings = array();
+	}
+
+	/**
+	 * @param bool $b_from_database
+	 * @return array
+	 */
+	public static function get_all_supported_languages($b_from_database=true)
+	{
+		if(self::$a_supported_languages === array())
+		{
+			self::$a_supported_languages = self::mapping_language_codes_to_names($b_from_database);
+			return self::$a_supported_languages;
+		}else{
+			return self::$a_supported_languages;
+		}
+	}
+
+	private static function get_all_languages_codes()
+	{
+		return include self::$s_language_path.'languages_codes'.EXT;
+	}
+
+	private static function get_implemented_languages($b_from_database)
+	{
+		if (!$b_from_database)
+		{
+			self::init();
+			$a_dir_entries = scandir(self::$s_language_path);
+			$a_supported_languages = array();
+			chdir(self::$s_language_path);
+			foreach($a_dir_entries as $s_entry)
+			{
+				if($s_entry === '.' || $s_entry === '..') continue;
+				if(is_dir($s_entry))
+				{
+					$a_supported_languages[] = $s_entry;
+				}
+			}
+			chdir(LOGD_ROOT);
+			return $a_supported_languages;
+		}else{
+			//todo get from database later
+			return null;
+		}
+	}
+
+	private static function mapping_language_codes_to_names($b_from_database)
+	{
+		$a_supported_languages = self::get_implemented_languages($b_from_database);
+		$a_mapping_languages = array();
+
+		//todo maybe store in database later or store name in table with code
+		$a_all_languages_codes = self::get_all_languages_codes();
+
+		foreach($a_supported_languages as $s_supported_language)
+		{
+			$s_supported_language_fallback = strstr($s_supported_language,'_',true);
+			if(array_key_exists($s_supported_language,$a_all_languages_codes) || array_key_exists($s_supported_language_fallback,$a_all_languages_codes))
+			{
+				if(!is_null($a_all_languages_codes[$s_supported_language])) {
+					$a_mapping_languages[$s_supported_language] = $a_all_languages_codes[$s_supported_language];
+				}else{
+					$a_mapping_languages[$s_supported_language] = $a_all_languages_codes[$s_supported_language_fallback];
+
+				}
+			}
+		}
+
+		return $a_mapping_languages;
 	}
 }
 
