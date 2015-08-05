@@ -82,16 +82,23 @@ class LOGD_Replacer {
 	/**
 	 * Setting the links for motd, mail etc.
 	 *
-	 * @param array $a_links    the array of all needed links
+	 * @param array $a_links        the array of all needed links
+	 * @param bool  $b_is_install   check if the view is the install-view
 	 */
-	public static function set_links($a_links=array())
+	public static function set_links($a_links=array(),$b_is_install=false)
 	{
 		if($a_links === array())
 		{ $a_links = Config::get_default_html('section_more'); }
 
 		foreach($a_links as $key => $value)
 		{
-			$key_value = __($key);
+			if ( !$b_is_install ) {
+				$key_value = __($key);
+			}else{
+				$key_value = null;
+				$value = null;
+			}
+
 			if(is_null($value))
 			{ $key_value = null; }
 

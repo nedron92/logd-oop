@@ -48,7 +48,11 @@ class LOGD_View {
 	 */
 	public function before()
 	{
-		Replacer::set_links();
+		if ( $this->s_filename == 'install' ) {
+			Replacer::set_links(array(),true);
+		}else{
+			Replacer::set_links();
+		}
 		Replacer::page_footer();
 	}
 

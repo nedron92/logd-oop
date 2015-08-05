@@ -47,6 +47,16 @@ I18N::init(GAME_LANGUAGE);
 //Initialize the random number generator
 mt_srand(LOGD::make_seed());
 
+if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.php') &&
+     file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default.php') )
+	{
+		View::create('install')->render();
+		exit (1);
+	}
+
+//including the .dbconfig.php with all Database-Constants
+include dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT;
+
 //Clear complete cache if needed.
 	//Cache::getInstance()->clear();
 	//die;
@@ -62,7 +72,7 @@ Replacer::page_header('LOGD - OOP');
 
 $test = Database::factory();
 //todo: implement routing
-//$test = Routing::init()->get_view();
+//Routing::init()->get_view();
 
 //Render the first view
 View::create('start')->render();

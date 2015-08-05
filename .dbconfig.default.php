@@ -10,15 +10,15 @@
 
 //the database-type (mysql, sql-lite etc.).
 //Look at game_core/database/drivers for all implemented database-drivers
-const DB_TYPE = 'mysql';
+const DB_TYPE = '%%DB_TYPE%%';
 
 //a prefix of all table names (if you changed the table-name-structure
 //you have to edit this)
-const DB_PREFIX = 'logd_';
+const DB_PREFIX = '%%DB_PREFIX%%';
 
 //your connection settings for the database
 // Host/Database-Name/Database-User and your password
-const DB_HOST = 'localhost';
-const DB_NAME = 'logd-oop';
-const DB_USER = 'root';
-const DB_PASSWD = '';
+const DB_HOST   = '%%DB_HOST%%';
+const DB_NAME   = '%%DB_NAME%%';
+const DB_USER   = '%%DB_USER%%';
+const DB_PASSWD = '%%DB_PASSWD%%';

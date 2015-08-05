@@ -102,9 +102,6 @@ if(PHP_OS === 'Linux')
 define('BASE_URL', $s_document_root);
 define('MEDIA_URL', BASE_URL.basename(MEDIA_PATH).'/');
 
-//including the .dbconfig.php with all Database-Constantsy
-include dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT;
-
 //define the standard-language, @todo later via database
 define('GAME_LANGUAGE','de_DE');
 

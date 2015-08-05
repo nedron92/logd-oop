@@ -38,6 +38,9 @@ class LOGD_Routing {
 	}
 
 
+	/**
+	 * @return Routing
+	 */
 	public static function init()
 	{
 		return new Routing();
@@ -45,16 +48,18 @@ class LOGD_Routing {
 
 	public static function get_view()
 	{
+		/*
 		$a_prepare_where_clause = array(
 			'path' => self::$s_current_request_path,
 			'name' => self::$s_current_request_file,
 		);
 
-		$result = Database::select_where(null,self::$s_view_table,$a_prepare_where_clause);
+		//$result = Database::select_where(null,self::$s_view_table,$a_prepare_where_clause);
 
 		if ( $result->success() ) {
 			$a_current_view = current($result->get_entries());
 			var_dump($a_current_view);
 		}
+		*/
 	}
 }
