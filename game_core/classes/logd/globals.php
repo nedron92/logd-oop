@@ -13,25 +13,30 @@
 class LOGD_Globals
 {
 	/**
-	 * Function to set a new value to the global variable
+	 * Function to set a new value to the global variable or an global array
 	 *
-	 * @param string    $name   the name of the global variable
-	 * @param string    $value  the value to set te requested global variable
+	 * @param string        $s_name   the name of the global variable
+	 * @param string        $s_value  the value to set te requested global variable
+	 * @param null|string   $s_index  optional, the index of an global array
 	 */
-	static public function set($name, $value)
+	static public function set($s_name,$s_value,$s_index=null)
 	{
-		$GLOBALS[$name] = $value;
+		if (!is_null($s_index)) {
+			$GLOBALS[$s_name][$s_index] = $s_value;
+		}else{
+			$GLOBALS[$s_name] = $s_value;
+		}
 	}
 
 	/**
 	 * Function to get a value of the specific global variable
 	 *
-	 * @param string    $name   the name of the global variable
+	 * @param string    $s_name   the name of the global variable
 	 *
 	 * @return mixed    the value of the requested global variable
 	 */
-	static public function get($name)
+	static public function get($s_name)
 	{
-		return $GLOBALS[$name];
+		return $GLOBALS[$s_name];
 	}
 } 

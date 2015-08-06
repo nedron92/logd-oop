@@ -13,9 +13,10 @@
 
 //compress every time the output with gzip
 ob_start("ob_gzhandler");
-//set the PageStart time and start/reload the session each time
+//set the PageStart time and start/reload the session each time with new session-id
 define('PAGE_START_TIME',microtime(true));
 session_start();
+session_regenerate_id();
 
 /**
  * @var string $game The directory in which your own game files are located.

@@ -11,6 +11,7 @@
  *
  * @var string  $i_step     the actual step of installation
  */
+
 $a_supported_languages = I18N::get_all_supported_languages(false);
 $s_html = '<form method="post" action="'.BASE_URL.'"> ';
 $s_html.= '<select name="game_language">';
@@ -23,6 +24,6 @@ foreach($a_supported_languages as $s_language_code => $s_language_name)
 	$s_html.= '<option '.$s_is_selected.' value="'.$s_language_code.'">'.$s_language_name.'</option>';
 }
 
-$s_html.= '</select> <input type="submit"> </form>';
+$s_html.= '</select> <input type="submit" value="'.__('form_choose_submit_form','form').'"> </form>';
 
 Replacer::output($s_html);
