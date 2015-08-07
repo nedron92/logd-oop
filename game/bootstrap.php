@@ -46,24 +46,8 @@ mt_srand(LOGD::make_seed());
 if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT) &&
      file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default'.EXT) )
 	{
-		//get the actual post-request and check if the language was given by POST
-		$s_post = Globals::get('_POST');
-		if (!is_null($s_post['game_language'])) {
-			Sesssion::get_session()->set_value('language',$s_post['game_language']);
-		}
 
-		//Initialize the I18N-Class for templates-usage
-		I18N::init();
-
-		//if we have no language-value in the session, set the default install-language to ENGLISH
-		if (is_null(Sesssion::get_session()->get_value('language'))) {
-			I18N::set_language('en_EN');
-		}else{
-			I18N::set_language(Sesssion::get_session()->get_value('language'));
-		}
-
-		//Initialize the installer with the current step by POST
-		new \Install\Installer($s_post['install_step']);
+		new \Install\Installer();
 		exit (1);
 	}
 
