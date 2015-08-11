@@ -25,17 +25,28 @@ class LOGD_Replacer {
 			$output = '<p class="nav-head">&#151;  '.__($title).'  &#151;</p>';
 			Template::get_instance()->set_output('navigation',__($output));
 		}
-		else Template::get_instance()->set_output('navigation','<a href="'.$link.'?'.LOGD_Core::create_random_uri_string().'">'.__($title).'</a>');
+		else {
+			Template::get_instance()->set_output('navigation',HTML::link($link.'?'.LOGD_Core::create_random_uri_string(),__($title)) );
+		}
 	}
 
 	/**
 	 * Set/add new text to the game content
 	 *
 	 * @param string    $output     the new output of the game content
+	 * @param boolean   $b_is_form  is the output a form, set it to true
 	 */
-	public static function output($output)
+	public static function output($output,$b_is_form=false)
 	{
+		if ($b_is_form === false) {
+			echo '<p>';
+		}
+
 		Template::get_instance()->set_output('game',__($output).'<br>');
+
+		if ($b_is_form === false) {
+			echo '</p>';
+		}
 	}
 
 	/**

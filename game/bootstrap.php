@@ -46,7 +46,6 @@ mt_srand(LOGD::make_seed());
 if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT) &&
      file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default'.EXT) )
 	{
-
 		new \Install\Installer();
 		exit (1);
 	}

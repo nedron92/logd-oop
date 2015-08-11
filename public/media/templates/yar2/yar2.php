@@ -77,7 +77,7 @@
     <div class="content col-md-10 col-xs-10">
         <div class="content-text col-md-10 col-xs-10">
             <div class="content-box">
-                <p>{game}</p>
+                {game}
             </div>
         </div>
 
