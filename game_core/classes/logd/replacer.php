@@ -129,4 +129,9 @@ class LOGD_Replacer {
 			}
 		}
 	}
+
+	public static function set_language($s_language = "en_EN")
+	{
+		Template::get_instance()->set_output('language',$s_language);
+	}
 }

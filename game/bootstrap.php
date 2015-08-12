@@ -43,6 +43,12 @@ spl_autoload_register(function($class) {
 //Initialize the random number generator
 mt_srand(LOGD::make_seed());
 
+//Initialize Session
+$o_session = Session::get_session();
+if ( ! $o_session->is_session_valid()) {
+	$o_session->clear_session();
+}
+
 if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT) &&
      file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default'.EXT) )
 	{

@@ -154,7 +154,7 @@ class LOGD_I18N
 
 		foreach($a_supported_languages as $s_supported_language)
 		{
-			$s_supported_language_fallback = strstr($s_supported_language,'_',true);
+			$s_supported_language_fallback = mb_strstr($s_supported_language,'_',true);
 			if(array_key_exists($s_supported_language,$a_all_languages_codes) || array_key_exists($s_supported_language_fallback,$a_all_languages_codes))
 			{
 				if(!is_null($a_all_languages_codes[$s_supported_language])) {

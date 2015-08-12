@@ -47,18 +47,20 @@ class Installer {
 		//get the actual post-request and check if the language was given by POST
 		$s_post = \Globals::get('_POST');
 		if (!is_null($s_post['game_language'])) {
-			\Sesssion::get_session()->set_value('language',$s_post['game_language']);
+			\Session::get_session()->set_value('language',$s_post['game_language']);
 		}
 
 		//Initialize the I18N-Class for templates-usage
 		\I18N::init();
 
 		//if we have no language-value in the session, set the default install-language to ENGLISH
-		if (is_null(\Sesssion::get_session()->get_value('language'))) {
+		if (is_null(\Session::get_session()->get_value('language'))) {
 			\I18N::set_language('en_EN');
 		}else{
-			\I18N::set_language(\Sesssion::get_session()->get_value('language'));
+			\I18N::set_language(\Session::get_session()->get_value('language'));
 		}
+
+		\Replacer::set_language(\I18N::get_language());
 
 		//set the current step by POST
 		$this->i_step = $s_post['install_step'];
@@ -68,6 +70,7 @@ class Installer {
 	{
 		\Replacer::addnav('Steps');
 		\Replacer::addnav(__('install_common_step','install').' 0 '.__('install_common_title_step_0','install'),BASE_URL);
+		\Replacer::addnav(__('install_common_step','install').' 1 '.__('install_common_title_step_0','install'),BASE_URL);
 		$this->s_step_title.= __('install_common_title_step_0','install');
 	}
 }

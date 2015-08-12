@@ -7,7 +7,7 @@
  * @subpackage LOGD
  *
  * @description
- * This class implements a wrapper for the module phpfastcache.
+ * This class implements a wrapper for phpfastcache.
  *
  */
 
@@ -24,7 +24,7 @@ class LOGD_Cache {
 	private $o_cache = null;
 
 	/**
-	 * @var null|LOGD_Cache  hold the actual instance of the class.
+	 * @var null|LOGD_Cache  hold the current instance of the class.
 	 */
 	private static $instance = null;
 

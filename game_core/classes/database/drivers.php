@@ -14,12 +14,12 @@
 abstract class Database_Drivers {
 
 	/**
-	 * @var array   $a_actual_query     the actual query fragments in an array
+	 * @var array   $a_actual_query     the current query fragments in an array
 	 */
 	protected $a_actual_query = array();
 
 	/**
-	 * @var array   $a_column_values    the actual columns with their values
+	 * @var array   $a_column_values    the current columns with their values
 	 */
 	protected $a_column_values = array();
 
@@ -29,7 +29,7 @@ abstract class Database_Drivers {
 	protected $o_database_connection = null;
 
 	/**
-	 * The constructor of a database driver is abstracted, because of of the need to implement it
+	 * The constructor of a database driver is abstracted, because of the need to implement it
 	 * in all child-classes
 	 *
 	 * @abstract
@@ -37,7 +37,7 @@ abstract class Database_Drivers {
 	abstract protected function __construct();
 
 	/**
-	 * This method will return the actual used driver with namespace.
+	 * This method will return the current used driver with namespace.
 	 *
 	 * @return string   the driver name with namespace
 	 */
