@@ -11,5 +11,5 @@ defined('CORE_PATH') or die('No direct script access.');
  * A wrapper to create html elements with attributes
  */
 
-class HTML extends HTML_HTMLCLASS
+class HTML extends \HTML\HTMLCLASS
 { }

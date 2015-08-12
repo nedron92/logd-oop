@@ -1,4 +1,5 @@
 <?php
+namespace htmL;
 defined('CORE_PATH') or die('No direct script access.');
 /**
  * @file    htmlclass.php
@@ -11,7 +12,7 @@ defined('CORE_PATH') or die('No direct script access.');
  * A wrapper to create html elements with attributes
  */
 
-class HTML_HTMLCLASS {
+class HTMLCLASS {
 
 	public static function create_element($s_element, $s_name, $a_attributes=array(), $s_styles=null,$b_self_close=false)
 	{
@@ -30,15 +31,6 @@ class HTML_HTMLCLASS {
 		}
 
 		return $s_html;
-	}
-
-	protected static function input($s_name, $a_attributes=array(), $s_id = null, $s_styles=null)
-	{
-		if(!is_null($s_id)) {
-			$a_attributes['id'] = $s_id;
-		}
-
-		return self::create_element('input',$s_name,$a_attributes=array(),$s_styles,true);
 	}
 
 	public static function link($s_link, $s_title, $s_id = null, $s_target=null, $s_type = null, $b_is_download=false)
