@@ -13,19 +13,33 @@ defined('CORE_PATH') or die('No direct script access.');
  */
 class Installer {
 
+	/**
+	 * @var int     the counter which step will be the next one and on which step we are
+	 */
 	private $i_step = 0;
+
+	/**
+	 * @var string  hold the title of the current install-step
+	 */
 	private $s_step_title;
 
 
+	/**
+	 * the constructor of this installer-class.
+	 * it initialize all needed values and set the hidden fields for the template
+	 */
 	public function __construct()
 	{
 		//Initialize the installer with the current-needed POST and Session values
 		$this->init();
 
+		//set a common title
 		$this->s_step_title = __('install_common_title','install');
 
+		//set the hidden fields, which we don't need for the installation
 		\Replacer::set_hidden_fields(array('character','online','more'));
 
+		//switch/case for the step and go to the right method
 		switch($this->i_step)
 		{
 			case 0:
@@ -35,16 +49,20 @@ class Installer {
 			}
 		}
 
-		 \Replacer::page_header($this->s_step_title);
-
+		//set the page header and render the install view
+		\Replacer::page_header($this->s_step_title);
 		\View::create('install')
 			->bind_by_value('i_step',$this->i_step)
 			->render();
 	}
 
+	/**
+	 * This method initialize the current language and the current step
+	 *
+	 */
 	private function init()
 	{
-		//get the actual post-request and check if the language was given by POST
+		//get the current post-request and check if the language was given by POST
 		$s_post = \Globals::get('_POST');
 		if (!is_null($s_post['game_language'])) {
 			\Session::get_session()->set_value('language',$s_post['game_language']);
@@ -66,6 +84,9 @@ class Installer {
 		$this->i_step = $s_post['install_step'];
 	}
 
+	/**
+	 * Method for the installation-step-0
+	 */
 	private function step_0()
 	{
 		\Replacer::addnav('Steps');

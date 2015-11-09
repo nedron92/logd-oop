@@ -44,7 +44,7 @@ class LOGD_Template {
 	private $a_output = array();
 
 	/**
-	 * @var null|LOGD_Template  hold the actual instance of the class.
+	 * @var null|LOGD_Template  hold the current instance of the class.
 	 */
 	private static $o_instance = null;
 
@@ -152,6 +152,7 @@ class LOGD_Template {
 					//All ok! Load the template and buffer the output
 					$a_global_template_variables = array(
 						'template_directory' => MEDIA_URL.$this->s_template_dir.'/'.$s_template_name.'/',
+						's_base_url' => dirname(BASE_URL).'/game_core/classes/',
 					);
 
 					extract($a_global_template_variables, EXTR_SKIP);
@@ -296,6 +297,7 @@ class LOGD_Template {
 			'jQuery' => MEDIA_URL.'js/libs/jquery-2.1.3.js',
 			'synchHeight-js' => MEDIA_URL.'js/plugin/syncheight/jquery.syncHeight.min.js',
 			'bootstrap-js' => MEDIA_URL.'js/plugin/bootstrap/bootstrap.js',
+			'popupoverlay' => MEDIA_URL.'js/plugin/popupoverlay/jquery.popupoverlay.js',
 
 			'bootstrap' => MEDIA_URL.'css/bootstrap/bootstrap.css',
 			$this->s_current_template_name => MEDIA_URL.$this->s_template_dir.'/'.$this->s_current_template_name.'/'.$this->s_current_template_name.'.css',

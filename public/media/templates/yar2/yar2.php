@@ -11,6 +11,7 @@
  * Copyright of the original theme: Chris Yarbrough
  *
  * @var $template_directory
+ * @var $s_base_url
  */
 ?>
 
@@ -21,6 +22,7 @@
     <title>{title}</title>
 </head>
 <body>
+<a href="<?php echo $s_base_url;?>" id="js-base-url" class="hidden"></a>
 <div class="header col-md-12 col-xs-12">
     <div class="title-text col-md-6 col-xs-6">
         <h1>{title}</h1>

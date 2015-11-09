@@ -7,6 +7,7 @@
 
 namespace Database;
 defined('CORE_PATH') or die('No direct script access.');
+
 /**
  * @package game_core
  * @subpackage database/driver
@@ -17,16 +18,24 @@ defined('CORE_PATH') or die('No direct script access.');
 class Driver_MySQL extends \Database_Drivers{
 
 	/**
-	 * @return $this|static|self
+	 * the constructor for this driver.
+	 * it set the correct connection-string and throw and Exception if there is anything wrong with the config
+	 *
+	 * @return $this|static|self    the database-driver object
+	 * @throws \LOGD_Exception
 	 */
 	public function __construct() {
 
+		//try to build the connection-string for mysql with the the information from the dbconfig-file
+		//and catch the thrown PDOException
 		try{
 			$this->o_database_connection = new \PDO(DB_TYPE.':host='.DB_HOST.';dbname='.DB_NAME.'', DB_USER, DB_PASSWD, array(
 				\PDO::ATTR_PERSISTENT => true
 			));
 		}catch (\PDOException $e)
 		{
+			// collect the current error information and throw it further to the \LOGD_Exception,
+			// then print the error-view
 			try{
 				$message = $e->getMessage() . __('error_dbconfig_file','errors');
 				$code = 'SQL-ERROR -> '.$e->getCode();
@@ -38,6 +47,8 @@ class Driver_MySQL extends \Database_Drivers{
 
 
 	/**
+	 * This method is a wrapper for an insert-into sql-command
+	 *
 	 * @param $s_table_name
 	 *
 	 * @return $this

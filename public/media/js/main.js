@@ -9,6 +9,15 @@
  *
  */
 
-jQuery(document).ready(function(){
+jQuery(document).ready(function() {
+
+    jQuery.ajax({
+        type: "POST",
+        dataType: "json",
+        url: jQuery("#js-base-url").attr('href') + "/ajax/ajaxhandler.php/is_session_expired",
+        success: function(data) {
+            alert("Test");
+        }
+    });
 
 });

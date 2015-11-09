@@ -12,7 +12,6 @@
 // ---------------SET UP ----------------
 
 //define a static array with needed path values
-
 static $a_include_paths = array();
  $a_include_paths = array(
 	'module_path' => MOD_PATH.PATH_SEPARATOR,
@@ -20,6 +19,7 @@ static $a_include_paths = array();
 	'game_path' => GAME_PATH.'classes'.DIRECTORY_SEPARATOR.PATH_SEPARATOR,
 );
 
+//iterate over this array to add the include paths correctly
 foreach($a_include_paths as $value)
 { set_include_path($value.get_include_path()); }
 
@@ -40,15 +40,22 @@ spl_autoload_register(function($class) {
 	spl_autoload(str_replace('_', DIRECTORY_SEPARATOR, $class));
 });
 
+
+//Clear complete cache if needed.
+//Cache::getInstance()->clear();
+//die;
+
 //Initialize the random number generator
 mt_srand(LOGD::make_seed());
 
-//Initialize Session
+//Initialize the Session
 $o_session = Session::get_session();
+
 if ( ! $o_session->is_session_valid()) {
-	$o_session->clear_session();
+	$o_session->create_new_session();
 }
 
+//check if the dbconfig.default.php exist, if yes - we have to install the game
 if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT) &&
      file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default'.EXT) )
 	{
@@ -63,9 +70,7 @@ if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT) &&
 //including the .dbconfig.php with all Database-Constants
 include dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT;
 
-//Clear complete cache if needed.
-	//Cache::getInstance()->clear();
-	//die;
+
 
 
 //Load the default template instance

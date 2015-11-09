@@ -12,7 +12,7 @@ defined('CORE_PATH') or die('No direct script access.');
  * the class to hold the session and provide methods instead of the pure array $_SESSION
  */
 
-class Session
+class SessionClass
 {
 	/**
 	 * @var array           this array has a reference to $_SESSION
@@ -25,23 +25,32 @@ class Session
 	private static $s_session_index= 'game';
 
 	/**
-	 * @var null|Session   it will hold the current instance of the session
+	 * @var null|SessionClass   it will hold the current instance of the session
 	 */
 	private static $o_instance = null;
+
 
 	/**
 	 * Constructor which initialize the the secure-session-handler and
 	 * start the session with a new generated id.
 	 * Defined as private, because of singleton pattern.
 	 *
+	 * @param bool $b_was_destroyed   handle if the last session was destroyed, for getting a new id
 	 */
-	private function __construct()
+	private function __construct($b_was_destroyed = false)
 	{
 		$session_handler = new SecureSessionHandler;
 		session_set_save_handler($session_handler,true);
 		session_start();
-		$this->a_session_data[self::$s_session_index] = &$_SESSION;
-		$this->refresh_session();
+		$this->a_session_data = &$_SESSION;
+
+		if ($b_was_destroyed) $this->refresh_session();
+
+		if( (mt_rand(0,4) === 0) && !$b_was_destroyed)
+		{
+			$this->refresh_session();
+		}
+
 	}
 
 	/**
@@ -53,7 +62,7 @@ class Session
 	/**
 	 * It will return the current session-object and instance
 	 *
-	 * @return Session
+	 * @return SessionClass
 	 */
 	public static function get_session()
 	{
@@ -88,12 +97,13 @@ class Session
 	 * It will create a new session instead of the old one, but CARE!
 	 * It will also delete all session data.
 	 *
-	 * @return Session
+	 * @return SessionClass
 	 */
 	public function create_new_session()
 	{
 		$this->clear_session();
-		return new $this();
+		return new $this(true);
+
 	}
 
 	/**
@@ -132,11 +142,12 @@ class Session
 	/**
 	 * This method checks if the current session is expired or not.
 	 * With the given parameter the lifetime will be set.
+	 * @todo: take the time to live from database later
 	 *
 	 * @param int $i_time_to_live   the number of minutes how long the session is a valid one
 	 * @return bool                 return true if sessions is expired or false if its valid
 	 */
-	public function is_session_expired($i_time_to_live = 30)
+	public function is_session_expired($i_time_to_live = 1)
 	{
 		$m_last_time = false;
 		if (isset($this->a_session_data['_last_activity'])) {

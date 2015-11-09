@@ -7,13 +7,13 @@
  * @subpackage LOGD
  *
  * @description
- * This class represent an Access to $GLOBALS
+ * This class represent an access to $GLOBALS
  */
 
 class LOGD_Globals
 {
 	/**
-	 * Function to set a new value to the global variable or an global array
+	 * Method to set a new value to the global variable or an global array
 	 *
 	 * @param string        $s_name   the name of the global variable
 	 * @param string        $s_value  the value to set te requested global variable
@@ -21,6 +21,8 @@ class LOGD_Globals
 	 */
 	static public function set($s_name,$s_value,$s_index=null)
 	{
+		//check if we had an index so we can set the value to an global array
+		//if not, set the value to the global-variable directly
 		if (!is_null($s_index)) {
 			$GLOBALS[$s_name][$s_index] = $s_value;
 		}else{
@@ -29,7 +31,7 @@ class LOGD_Globals
 	}
 
 	/**
-	 * Function to get a value of the specific global variable
+	 * Method to get a value of the specific global variable
 	 *
 	 * @param string    $s_name   the name of the global variable
 	 *

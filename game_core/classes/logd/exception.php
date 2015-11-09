@@ -40,8 +40,11 @@ class LOGD_Exception extends Exception{
 	/**
 	 * Printed out the errors to the error view
 	 */
-	public function print_error() {
+	public function print_error()
+	{
 
+		//check if there was no failure in the template, render it, print out failure.
+		//If we have errors in the template, then render the error-view without a template
 		if(strpos($this->m_code,'TEMPLATE') !== false) {
 			View::create('error')
 				->bind_by_name('s_error_message',$this->message)

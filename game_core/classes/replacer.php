@@ -1,6 +1,6 @@
 <?php defined('CORE_PATH') or die('No direct script access.');
 /**
- * @file    Replacer.php
+ * @file    replacer.php
  * @author  Daniel Becker   <becker_leinad@hotmail.com>
  * @date    10.03.2015
  * @package game_core

@@ -3,15 +3,16 @@ namespace session;
 defined('CORE_PATH') or die('No direct script access.');
 
 /**
- * @file    session.php
+ * @file    securesessionhandler.php
  * @author  Daniel   <becker_leinad@hotmail.com>
- * @date    13.08.2015
+ * @date    06.11.2015
  * @package game_core
  * @subpackage session
  *
  * @description
- * the class to hold the session and provide methods instead of the pure array $_SESSION
+ * This class define a secure handler based on the standard php-session handler.
  */
+
 
 class SecureSessionHandler extends \SessionHandler
 {
@@ -21,8 +22,6 @@ class SecureSessionHandler extends \SessionHandler
 	private $s_session_key      = 'game_session_key';
 	private $s_session_name     = 'logd_game';
 	private $a_cookie           =  array();
-	private $s_session_file_name = "sess_";
-
 
 	public function __construct()
 	{
@@ -76,17 +75,11 @@ class SecureSessionHandler extends \SessionHandler
 			return false;
 		}
 
-		setcookie(
-			$this->s_session_name,
-			'',
-			time() - 42000,
-			$this->a_cookie['path'],
-			$this->a_cookie['domain'],
-			$this->a_cookie['secure'],
-			$this->a_cookie['httponly']
-		);
 
-		unlink(session_save_path().DIRECTORY_SEPARATOR.$this->s_session_file_name.$id);
+		setcookie( $this->s_session_name, null, time() - 42000);
+
+
+		parent::destroy($id);
 
 		return true;
 

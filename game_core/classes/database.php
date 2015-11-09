@@ -1,10 +1,9 @@
 <?php defined('CORE_PATH') or die('No direct script access.');
 /**
- * @file    Database.php
+ * @file    database.php
  * @author  Daniel Becker <becker_leinad@hotmail.com>
  * @date    26.03.2015
  * @package game_core
- * @subpackage LOGD
  *
  * @description
  * The database connection class.

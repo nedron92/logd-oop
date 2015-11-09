@@ -44,13 +44,17 @@ class Database_Connection {
 	 * readability and usage. (driver-only-methods are methods of a driver, that not specified in the
 	 * abstract Database_Driver class)
 	 *
-	 * @return Database_Drivers| \Database\Driver_MySQL
+	 * @return Database_Drivers| \Database\Driver_MySQL     return the specific driver-object
 	 * @throws LOGD_Exception
 	 */
-	public static function factory() {
-
+	public static function factory()
+	{
+		//check if we have already an instance of a driver class
 		if ( null === self::$o_instance ) {
 
+			//try to load the specific driver class (check if the class exists),
+			//based on the PREFIX with namespace and the database-type.
+			//throw an Exception with the corresponding error, which driver class failed
 			try {
 				$s_class = self::DRIVER_PREFIX.DB_TYPE;
 
@@ -60,6 +64,7 @@ class Database_Connection {
 					throw new LOGD_Exception($message,900);
 				}
 
+				//set the current instance-object to the specific driver class and check the methods
 				self::$o_instance =  new $s_class;
 				self::$o_instance->check_methods();
 

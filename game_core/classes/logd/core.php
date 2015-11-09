@@ -116,7 +116,10 @@ class LOGD_Core
 	 */
 	public static function create_random_uri_string()
 	{
+		//check if the static-member is an empty one, if yes - calculate it
 		if ( is_null(self::$s_random_string) ) {
+			//if we had a unique-id of the server, calculate if this value an random-string
+			//else calculate if the PHP-OS Constant an random string
 			if(is_null($_SERVER['UNIQUE_ID']) || $_SERVER['UNIQUE_ID'] === '')
 			{
 				$s_random = str_shuffle(PHP_OS.time());

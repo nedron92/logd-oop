@@ -9,7 +9,7 @@
  * @description
  * The view for the install-script of the game
  *
- * @var string  $i_step     the actual step of installation
+ * @var string  $i_step     the current step of installation
  */
 
 $a_supported_languages = I18N::get_all_supported_languages(false);

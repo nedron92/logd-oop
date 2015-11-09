@@ -1,6 +1,6 @@
 <?php defined('CORE_PATH') or die('No direct script access.');
 /**
- * @file    LOGD.php
+ * @file    logd.php
  * @author  Daniel Becker   <becker_leinad@hotmail.com>
  * @date    19.02.2015
  * @package game_core

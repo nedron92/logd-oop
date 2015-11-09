@@ -75,7 +75,7 @@ class LOGD_I18N
 
 	public static function translate($s_translate_id,$s_section='common')
 	{
-		//set up the actual language with section
+		//set up the current language with section
 		$s_language_section = self::$s_language_code.'.'.$s_section;
 
 		if(sizeof(self::$a_language_strings) === 0 || sizeof(self::$a_language_strings[$s_language_section]) === 0) {

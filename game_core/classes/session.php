@@ -10,7 +10,7 @@
  * the class to hold the session
  */
 
-class Session extends \Session\Session
+class Session extends \Session\SessionClass
 {
 
 }

@@ -1,5 +1,4 @@
-<?php
-defined('CORE_PATH') or die('No direct script access.');
+<?php defined('CORE_PATH') or die('No direct script access.');
 /**
  * @file    html.php
  * @author  Daniel   <becker_leinad@hotmail.com>
