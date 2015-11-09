@@ -13,6 +13,7 @@ defined('CORE_PATH') or die('No direct script access.');
  * the class to hold the session and provide methods instead of the pure array $_SESSION
  */
 
+
 class SecureSessionHandler extends \SessionHandler
 {
 	/**
