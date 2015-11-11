@@ -10,11 +10,11 @@
  */
 
 jQuery(document).ready(function() {
-
+//jQuery("#js-base-url").attr('href') + "/ajax/ajaxhandler.php/is_session_expired",
     jQuery.ajax({
         type: "POST",
         dataType: "json",
-        url: jQuery("#js-base-url").attr('href') + "/ajax/ajaxhandler.php/is_session_expired",
+        url: jQuery("#js-base-url").attr('href') + "ajax/is_session_expired",
         success: function(data) {
             alert("Test");
         }

@@ -55,6 +55,8 @@ if ( ! $o_session->is_session_valid()) {
 	$o_session->create_new_session();
 }
 
+Routing::init();
+
 //check if the dbconfig.default.php exist, if yes - we have to install the game
 if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT) &&
      file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default'.EXT) )

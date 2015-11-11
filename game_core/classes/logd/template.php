@@ -152,7 +152,7 @@ class LOGD_Template {
 					//All ok! Load the template and buffer the output
 					$a_global_template_variables = array(
 						'template_directory' => MEDIA_URL.$this->s_template_dir.'/'.$s_template_name.'/',
-						's_base_url' => dirname(BASE_URL).'/game_core/classes/',
+						's_base_url' => BASE_URL,
 					);
 
 					extract($a_global_template_variables, EXTR_SKIP);

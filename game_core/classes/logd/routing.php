@@ -18,6 +18,8 @@ class LOGD_Routing {
 
 	private static $s_view_table = 'views';
 
+	private $a_routing_table = array();
+
 	private function __construct() {
 		$a_get_request = Globals::get('_GET');
 		$m_view_file = null;
@@ -46,7 +48,7 @@ class LOGD_Routing {
 		return new Routing();
 	}
 
-	public static function get_view()
+	public function get_view()
 	{
 		/*
 		$a_prepare_where_clause = array(
@@ -61,5 +63,21 @@ class LOGD_Routing {
 			var_dump($a_current_view);
 		}
 		*/
+	}
+
+	private function calc_routing_table()
+	{
+		$this->a_routing_table['ajax'] = array(
+			'type' => 'class',
+			'file' => 'ajaxhandler',
+			'default_method' => 'index'
+		);
+	}
+
+	public function get_route()
+	{
+		var_dump(self::$s_current_request_file);
+		var_dump(self::$s_current_request_path);
+
 	}
 }
