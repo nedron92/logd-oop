@@ -10,13 +10,28 @@
  */
 
 jQuery(document).ready(function() {
-//jQuery("#js-base-url").attr('href') + "/ajax/ajaxhandler.php/is_session_expired",
+
+    var data = { };
+
     jQuery.ajax({
         type: "POST",
         dataType: "json",
+        data: data,
         url: jQuery("#js-base-url").attr('href') + "ajax/is_session_expired",
         success: function(data) {
-            alert("Test");
+            if (data["session_valid"] == false) {
+                jQuery('.header').append(data["message"]);
+
+                jQuery('#message_popup').popup({
+                    autoopen: true,
+                    escape: false,
+                    onclose: function()
+                    {
+                        location.href = jQuery("#js-base-url").attr('href');
+                    }
+                });
+
+            }
         }
     });
 

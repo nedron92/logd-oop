@@ -51,10 +51,6 @@ mt_srand(LOGD::make_seed());
 //Initialize the Session
 $o_session = Session::get_session();
 
-if ( ! $o_session->is_session_valid()) {
-	$o_session->create_new_session();
-}
-
 Routing::init();
 
 //check if the dbconfig.default.php exist, if yes - we have to install the game

@@ -66,11 +66,15 @@ class LOGD_View {
 	/**
 	 * Method for rendering the view and output it to the browser.
 	 *
-	 * @param bool|true $with_template  If true, the method will render also the full template, if not the output
-	 *                                  will be without template.
-	 *                                  Default: true
+	 * @param bool  $with_template      If true, the method will render also the full template, if not the output
+	 *                                      will be without template.
+	 *                                      Default: true
+	 *
+	 * @param bool  $b_return_output    If true, it will return the output and not printed it out
+	 *
+	 * @return string|null
 	 */
-	public function render($with_template = true)
+	public function render($with_template = true, $b_return_output = false)
 	{
 		if($with_template) $this->before();
 
@@ -79,13 +83,16 @@ class LOGD_View {
 		//import all local variables to the view
 		extract($this->a_variables, EXTR_SKIP);
 
+		if($b_return_output) ob_start();
 		// Load the view
 		include $path;
+
+		if($b_return_output) return trim(ob_get_clean());
 
 		//Render the current template
 		if($with_template) Template::get_instance()->render();
 
-
+		return null;
 	}
 
 	/**

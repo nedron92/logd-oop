@@ -147,7 +147,7 @@ class SessionClass
 	 * @param int $i_time_to_live   the number of minutes how long the session is a valid one
 	 * @return bool                 return true if sessions is expired or false if its valid
 	 */
-	public function is_session_expired($i_time_to_live = 1)
+	public function is_session_expired($i_time_to_live = 30)
 	{
 		$m_last_time = false;
 		if (isset($this->a_session_data['_last_activity'])) {

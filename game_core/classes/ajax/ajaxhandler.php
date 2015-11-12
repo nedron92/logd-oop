@@ -14,35 +14,73 @@ namespace ajax;
 class AjaxHandler
 {
 
-//alpha
-	public function __construct()
+	/**
+	 * The constructor need the method-name, because it will called it - if we have an ajax-request
+	 *
+	 * @param   string  $s_method   the name of the method to call
+	 */
+	public function __construct($s_method)
 	{
-		$s_method = ltrim($_SERVER['PATH_INFO'],'/\\');
-		$o_method = false;
-
-		try{
-			$o_method = new \ReflectionMethod(__CLASS__,$s_method);
-		}catch (\ReflectionException $e)
+		if(AjaxHandler::is_ajax())
 		{
-			$test = \session\SessionClass::get_session();
-			var_dump($o_method);
+			$o_method_name = 'fallback';
+
+			try{
+				$o_method = new \ReflectionMethod(__CLASS__,$s_method);
+				$o_method_name = $o_method->getName();
+			}catch (\ReflectionException $e)
+			{
+				echo $e->getMessage();
+			}
+
+			return $this->$o_method_name();
 		}
 
+		exit(1);
 	}
 
+	/**
+	 * This method checks, if we really have an AJAX-Request and return a boolean value
+	 *
+	 * @return bool     Return TRUE, if its a AJAX-Request and false otherwise
+	 */
 	public static function is_ajax()
 	{
 		return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 	}
 
-	public static function index()
+
+	/**
+	 *
+	 */
+	public function is_session_expired()
 	{
-		if(AjaxHandler::is_ajax())
-		{
-			new AjaxHandler();
-			exit (1);
+		$a_return_values = array();
+		$b_session_valid = true;
+
+		$o_session = \Session::get_session();
+
+		if (!$o_session->is_session_valid()) {
+
+			$test = \View::create('message')->render(false,true);
+
+			$b_session_valid = false;
+			$o_session->create_new_session();
+			$a_return_values['message'] = $test;
 		}
+
+		$a_return_values['session_valid'] = $b_session_valid;
+
+		echo  json_encode($a_return_values);
+
 	}
 
+	/**
+	 * @return bool
+	 */
+	public function fallback()
+	{
+		return false;
+	}
 }
 

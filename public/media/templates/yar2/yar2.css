@@ -43,6 +43,11 @@ select {
     color: #CCCCCC;
 }
 
+body .well.popup {
+    background-color: #000000;
+    color: #cccccc;
+}
+
 /*
 --------------------------------
     H E A D E R     S T Y L E
@@ -59,7 +64,6 @@ select {
 
 .header .title-image img
 { margin-top: 5px; }
-
 
 
 /*
