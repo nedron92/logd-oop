@@ -15,19 +15,24 @@ class AjaxHandler
 {
 
 //alpha
-	public function __construct()
+	public function __construct($s_method)
 	{
-		$s_method = ltrim($_SERVER['PATH_INFO'],'/\\');
-		$o_method = false;
-
-		try{
-			$o_method = new \ReflectionMethod(__CLASS__,$s_method);
-		}catch (\ReflectionException $e)
+		if(AjaxHandler::is_ajax())
 		{
-			$test = \session\SessionClass::get_session();
-			var_dump($o_method);
+			$o_method_name = 'fallback';
+
+			try{
+				$o_method = new \ReflectionMethod(__CLASS__,$s_method);
+				$o_method_name = $o_method->getName();
+			}catch (\ReflectionException $e)
+			{
+				echo $e->getMessage();
+			}
+
+			return $this->$o_method_name();
 		}
 
+		exit(1);
 	}
 
 	public static function is_ajax()
@@ -35,14 +40,28 @@ class AjaxHandler
 		return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 	}
 
-	public static function index()
+
+	public function is_session_expired()
 	{
-		if(AjaxHandler::is_ajax())
-		{
-			new AjaxHandler();
-			exit (1);
+		$b_session_valid = true;
+
+		$o_session = \session\SessionClass::get_session();
+
+		if (!$o_session->is_session_valid()) {
+			$b_session_valid = false;
+			$o_session->create_new_session();
 		}
+
+		$a_return_values = array();
+		$a_return_values['session_valid'] = json_encode($b_session_valid);
+
+		return json_encode($a_return_values);
+
 	}
 
+	public function fallback()
+	{
+		return false;
+	}
 }
 

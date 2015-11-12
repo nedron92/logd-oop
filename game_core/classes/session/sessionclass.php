@@ -154,7 +154,7 @@ class SessionClass
 			$m_last_time = $this->a_session_data['_last_activity'];
 		}
 
-		if ( ($m_last_time !== false) && (time() - $m_last_time > $i_time_to_live * 60) ) {
+		if ( ($m_last_time !== false) && (time() - $m_last_time > $i_time_to_live * 3) ) {
 			return true;
 		}
 

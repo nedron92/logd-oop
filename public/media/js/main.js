@@ -10,14 +10,22 @@
  */
 
 jQuery(document).ready(function() {
-//jQuery("#js-base-url").attr('href') + "/ajax/ajaxhandler.php/is_session_expired",
+
+    var data = { };
+
     jQuery.ajax({
         type: "POST",
         dataType: "json",
+        data: data,
         url: jQuery("#js-base-url").attr('href') + "ajax/is_session_expired",
         success: function(data) {
-            alert("Test");
+            console.log(data);
+        },
+
+        error: function(msg) {
+            console.log(msg);
         }
+
     });
 
 });
