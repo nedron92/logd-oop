@@ -48,9 +48,8 @@ spl_autoload_register(function($class) {
 //Initialize the random number generator
 mt_srand(LOGD::make_seed());
 
-//Initialize the Session
+//Initialize the Session and the Routing
 $o_session = Session::get_session();
-
 Routing::init();
 
 //check if the dbconfig.default.php exist, if yes - we have to install the game

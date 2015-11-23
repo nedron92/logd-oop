@@ -1,4 +1,6 @@
-<?php defined('CORE_PATH') or die('No direct script access.');
+<?php
+namespace database;
+defined('CORE_PATH') or die('No direct script access.');
 
 /**
  * @file    connection.php
@@ -12,15 +14,15 @@
  * This class will load the right driver, based on the DB_TYPE in '.dbconfig.php'
  */
 
-class Database_Connection {
+class Connection {
 
 	/**
 	 * @const string    The prefix (with correct namespace) of all Database-Drivers
 	 */
-	const DRIVER_PREFIX = '\Database\Driver_';
+	const DRIVER_PREFIX = 'Database\Driver_';
 
 	/**
-	 * @var Database_Drivers $o_instance    the current instance of the Database-Connection
+	 * @var Drivers    $o_instance     the current instance of the Database-Connection
 	 */
 	private static $o_instance = null;
 
@@ -44,8 +46,8 @@ class Database_Connection {
 	 * readability and usage. (driver-only-methods are methods of a driver, that not specified in the
 	 * abstract Database_Driver class)
 	 *
-	 * @return Database_Drivers| \Database\Driver_MySQL     return the specific driver-object
-	 * @throws LOGD_Exception
+	 * @return Drivers| \Database\Driver_MySQL     return the specific driver-object
+	 * @throws \LOGD_Exception
 	 */
 	public static function factory()
 	{
@@ -61,14 +63,14 @@ class Database_Connection {
 				if(!class_exists($s_class)) {
 					$message = __('error_class_not_found','errors').'<strong>'.$s_class.'</strong><br>';
 					$message.= __('error_wrong_driver','errors').'<strong>'.DB_TYPE.'</strong>';
-					throw new LOGD_Exception($message,900);
+					throw new \LOGD_Exception($message,900);
 				}
 
 				//set the current instance-object to the specific driver class and check the methods
 				self::$o_instance =  new $s_class;
 				self::$o_instance->check_methods();
 
-			}catch (LOGD_Exception $e) {
+			}catch (\LOGD_Exception $e) {
 				$e->print_error();
 			}
 		}

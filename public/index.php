@@ -5,15 +5,15 @@
  * @date    26.02.2015
  *
  * @description
- * Start file of this project
+ * the start file of the game
  *
- * @copyright   The original copyright hold the developers of the Kohana PHP frameworks.
+ * @copyright   The original copyright hold the developers of the Kohana PHP framework.
  *              This file is a modified one of the Kohana index.php.
  */
 //compress every time the output with gzip
 ob_start("ob_gzhandler");
 
-//set the PageStart time
+//set the PageStart time (for calculation later)
 define('PAGE_START_TIME',microtime(true));
 
 //set the header for UTF-8 encoding and also the internal multi-byte-encoding
@@ -21,24 +21,24 @@ header("Content-Type: text/html; charset=utf-8");
 mb_internal_encoding('utf-8');
 
 /**
- * @var string $s_game  The directory in which your own game files are located.
- *                      (For example to extend a Core Class or create new Classes).
- *                      The game directory must contain the bootstrap.php file.
+ * @var string  $s_game  The directory in which your own game files are located.
+ *                       (For example to extend a Core Class or create new Classes).
+ *                       The game directory have to contain the bootstrap.php file.
  */
 $s_game = '../game';
 
 /**
- * @var string $s_game_core The directory in which all core files of LOGD are located.
+ * @var string  $s_game_core    The directory in which all core files of LOGD are located.
  */
 $s_game_core = '../game_core';
 
 /**
- * @var string $s_modules   The directory in which additional modules are located to extend the game.
+ * @var string  $s_modules      The directory in which additional modules are located to extend the game.
  */
 $s_modules = '../modules';
 
 /**
- * @var string $s_media     The directory in which additional media (e.q. all templates/css etc.) are located
+ * @var string  $s_media        The directory in which additional media (e.q. all templates/css etc.) are located
  */
 $s_media = 'media';
 

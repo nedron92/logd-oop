@@ -15,7 +15,7 @@ defined('CORE_PATH') or die('No direct script access.');
  * @description
  * This class represents the driver for a mysql-database (also maria-db)
  */
-class Driver_MySQL extends \Database_Drivers{
+class Driver_MySQL extends Drivers{
 
 	/**
 	 * the constructor for this driver.

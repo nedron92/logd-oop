@@ -1,4 +1,6 @@
-<?php defined('CORE_PATH') or die('No direct script access.');
+<?php
+namespace database;
+defined('CORE_PATH') or die('No direct script access.');
 
 /**
  * @file    drivers.php
@@ -11,7 +13,7 @@
  * This class represents the main class of all database-drivers.
  * It specified some main/equal methods of all drivers.
  */
-abstract class Database_Drivers {
+abstract class Drivers implements iGeneral{
 
 	/**
 	 * @var array   $a_current_query     the current query fragments in an array
@@ -82,7 +84,7 @@ abstract class Database_Drivers {
 	 * this method checks if the specific-driver-only methods have the specific prefix for readability.
 	 * It will thrown an LOGD_Excepion if there is any failure.
 	 *
-	 * @throws LOGD_Exception
+	 * @throws \LOGD_Exception
 	 */
 	public function check_methods()
 	{
@@ -108,12 +110,12 @@ abstract class Database_Drivers {
 			$message = trim(__('error_check_methods','errors')).'<b>'.implode(', ',$a_failed_methods).'</b>';
 			$message = preg_replace('/\t+/', '', $message);
 
-			throw new LOGD_Exception($message,1000);
+			throw new \LOGD_Exception($message,1000);
 		}
 	}
 
 	/**
-	 * @return null|PDO
+	 * @return null|\PDO
 	 */
 	public function get_database_object()
 	{

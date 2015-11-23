@@ -1,5 +1,5 @@
 <?php
-namespace Install;
+namespace install;
 defined('CORE_PATH') or die('No direct script access.');
 /**
  * @file    installer.php

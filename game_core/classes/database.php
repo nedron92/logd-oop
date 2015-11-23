@@ -11,6 +11,6 @@
  *
  */
 
-class Database extends Database_Connection{
+class Database extends \database\Connection{
 
 } 
