@@ -38,22 +38,40 @@ class LOGD_Routing
 				try
 				{
 					$o_reflect_class  = new ReflectionClass($m_route[0].'\\'.$a_route['file']);
-					$o_reflect_method = new ReflectionMethod($o_reflect_class->getName(),$m_route[1]);
 
-					$class_name = ($o_reflect_class->getName());
-					new $class_name($o_reflect_method->getName());
+					if ($o_reflect_class->hasMethod($m_route[1]))
+					{
+						if ($m_route[0] === 'ajax')
+						{
+							$o_reflect_class->newInstance($m_route[1]);
+							exit(1);
+						}else{
+							$o_reflect_method = $o_reflect_class->getMethod($m_route[1]);
 
-					if ($m_route[0] === 'ajax') exit(1);
+							if ($o_reflect_method->isStatic()) {
+								$o_reflect_method->invoke(null);
+							}else{
+								$o_reflect_method->invoke($o_reflect_class->newInstance());
+							}
+						}
+					}
 
 				}catch (ReflectionException $e)
 				{
 					try
 					{
 						$o_reflect_class  = new ReflectionClass($m_route[0].'\\'.$a_route['file']);
-						$o_reflect_method = new ReflectionMethod($o_reflect_class->getName(),$a_route['default_method']);
 
-						$class_name = ($o_reflect_class->getName());
-						new $class_name($o_reflect_method->getName());
+						if ($o_reflect_class->hasMethod($a_route['default_method']))
+						{
+							$o_reflect_method = $o_reflect_class->getMethod($a_route['default_method']);
+
+							if ($o_reflect_method->isStatic()) {
+								$o_reflect_method->invoke(null);
+							}else{
+								$o_reflect_method->invoke($o_reflect_class->newInstance());
+							}
+						}
 
 					}catch (ReflectionException $e)
 					{
@@ -103,7 +121,7 @@ class LOGD_Routing
 		$this->a_routing_table['ajax'] = array(
 			'type' => 'class',
 			'file' => 'ajaxhandler',
-			'default_method' => 'index'
+			'default_method' => 'fallback'
 		);
 
 		$this->a_routing_table['install'] = array(

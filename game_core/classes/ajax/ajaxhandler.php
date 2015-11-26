@@ -19,22 +19,18 @@ class AjaxHandler
 	 * The constructor need the method-name, because it will called it - if we have an ajax-request
 	 *
 	 * @param   string  $s_method   the name of the method to call
+	 * @param   array   $a_args     an array with all arguments of the needed method
+	 *
 	 */
-	public function __construct($s_method)
+	public function __construct($s_method,$a_args=array())
 	{
-		if(AjaxHandler::is_ajax())
+		if(self::is_ajax())
 		{
-			$o_method_name = 'fallback';
-
-			try{
-				$o_method = new \ReflectionMethod(__CLASS__,$s_method);
-				$o_method_name = $o_method->getName();
-			}catch (\ReflectionException $e)
-			{
-				echo $e->getMessage();
+			if($a_args === array()) {
+				$this->$s_method();
+			} else {
+				$this->$s_method($a_args);
 			}
-
-			return $this->$o_method_name();
 		}
 
 		exit(1);
@@ -63,16 +59,16 @@ class AjaxHandler
 
 		if (!$o_session->is_session_valid()) {
 
-			$test = \View::create('message')->render(false,true);
+			$s_message = \View::create('message')->render(false,true);
 
 			$b_session_valid = false;
 			$o_session->create_new_session();
-			$a_return_values['message'] = $test;
+			$a_return_values['message'] = $s_message;
 		}
 
 		$a_return_values['session_valid'] = $b_session_valid;
 
-		echo  json_encode($a_return_values);
+		echo json_encode($a_return_values);
 
 	}
 

@@ -39,6 +39,11 @@ class Installer {
 		//set the hidden fields, which we don't need for the installation
 		\Replacer::set_hidden_fields(array('character','online','more'));
 
+		if ($this->check_dbconfig_file() !== array()) {
+			\Replacer::page_header($this->s_step_title);
+			$message = __('Probleme mit der ".dbconfig.default'.EXT.'". <br>Folgende Konstanten haben andere Werte als die ursprüngliche Datei');
+			throw new \LOGD_Exception($message);
+		}
 		//switch/case for the step and go to the right method
 		switch($this->i_step)
 		{
@@ -51,6 +56,7 @@ class Installer {
 
 		//set the page header and render the install view
 		\Replacer::page_header($this->s_step_title);
+
 		\View::create('install')
 			->bind_by_value('i_step',$this->i_step)
 			->render();
@@ -83,6 +89,44 @@ class Installer {
 		//set the current step by POST
 		$this->i_step = $s_post['install_step'];
 	}
+
+	private function check_dbconfig_file()
+	{
+		$s_file = file_get_contents(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default'.EXT);
+
+		$a_constant_value_mapping = array();
+		$a_failure_array = array();
+
+		while(1)
+		{
+			static $counter = 0;
+			static $s_first_const = 0;
+			static $s_first_const_end = 0;
+
+			$s_first_const = strpos($s_file,'const ',$s_first_const_end);
+			if (!$s_first_const) break;
+			$s_first_const_end = strpos($s_file,';',$s_first_const);
+			$length = $s_first_const_end - $s_first_const;
+			$s_current_substr = substr($s_file,$s_first_const,$length);
+
+			$key = trim(substr($s_current_substr,6, strpos($s_current_substr,'=') - 7 ) );
+			$value = trim(substr($s_current_substr, strpos($s_current_substr,'=') + 3 ), ' \'');
+			$a_constant_value_mapping[$key] = $value;
+		}
+
+		foreach($a_constant_value_mapping as $key => $value)
+		{
+			if ($value === '%%' . $key . '%%') {
+				continue;
+			}else{
+				$a_failure_array[] = $key;
+			}
+		}
+
+		return $a_failure_array;
+
+	}
+
 
 	/**
 	 * Method for the installation-step-0

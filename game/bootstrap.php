@@ -11,8 +11,7 @@
 
 // ---------------SET UP ----------------
 
-//define a static array with needed path values
-static $a_include_paths = array();
+//define a array with needed path values
  $a_include_paths = array(
 	'module_path' => MOD_PATH.PATH_SEPARATOR,
 	'core_path' => CORE_PATH.'classes'.DIRECTORY_SEPARATOR.PATH_SEPARATOR,
@@ -49,14 +48,18 @@ spl_autoload_register(function($class) {
 mt_srand(LOGD::make_seed());
 
 //Initialize the Session and the Routing
-$o_session = Session::get_session();
+Session::get_session();
 Routing::init();
 
 //check if the dbconfig.default.php exist, if yes - we have to install the game
 if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT) &&
      file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default'.EXT) )
 	{
-		new \Install\Installer();
+		try {
+			new \Install\Installer();
+		}catch (LOGD_Exception $e) {
+			$e->print_error();
+		}
 		exit (1);
 	}
 
