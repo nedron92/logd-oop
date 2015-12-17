@@ -55,6 +55,7 @@ Routing::init();
 if( !file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig'.EXT) &&
      file_exists(dirname(LOGD_ROOT).DIRECTORY_SEPARATOR.'.dbconfig.default'.EXT) )
 	{
+		//try-catch the installer, if it fails
 		try {
 			new \Install\Installer();
 		}catch (LOGD_Exception $e) {

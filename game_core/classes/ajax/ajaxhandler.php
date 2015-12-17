@@ -24,7 +24,7 @@ class AjaxHandler
 	 */
 	public function __construct($s_method,$a_args=array())
 	{
-		if(self::is_ajax())
+		if($this->is_ajax())
 		{
 			if($a_args === array()) {
 				$this->$s_method();
@@ -41,7 +41,7 @@ class AjaxHandler
 	 *
 	 * @return bool     Return TRUE, if its a AJAX-Request and false otherwise
 	 */
-	public static function is_ajax()
+	private function is_ajax()
 	{
 		return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 	}
@@ -50,7 +50,7 @@ class AjaxHandler
 	/**
 	 *
 	 */
-	public function is_session_expired()
+	private function is_session_expired()
 	{
 		$a_return_values = array();
 		$b_session_valid = true;
@@ -75,7 +75,7 @@ class AjaxHandler
 	/**
 	 * @return bool
 	 */
-	public function fallback()
+	private function fallback()
 	{
 		return false;
 	}
